@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { MainSearchPage } from '../pages/main-search/main-search';
 import { ListPage } from '../pages/list/list';
 import { FormsModule } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,6 +15,7 @@ import { LastPage } from '../pages/lastpage/lastpage';
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
+    MainSearchPage,
     ListPage,
     LastPage,
   ],
@@ -25,6 +27,7 @@ import { LastPage } from '../pages/lastpage/lastpage';
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
+    MainSearchPage,
     ListPage,
     LastPage
   ],
