@@ -1,0 +1,29 @@
+page-list{
+ion-content .button{
+  background-color: #8DCAFF;
+}
+ion-title{
+  text-align: right;
+}
+
+// ion-card:hover ion-item{
+//   background-color: #f7f9fc;
+// }
+// ion-card:hover{
+//   background-color: #f7f9fc;
+// }
+img{
+  opacity:0.8;
+}
+
+ion-card:hover{
+  -webkit-box-shadow: 1.5px 1.5px 1.5px #9f9fa0;
+  -moz-box-shadow: 1.5px 1.5px 1.5px #9f9fa0;
+  box-shadow: 1.5px 1.5px 1.5px #9f9fa0;
+
+}
+ion-card:hover img{
+  opacity:1;
+}
+
+}

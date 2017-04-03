@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+    <ion-title>SofaSurf</ion-title>
+  </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="upper">
+      <ion-slides pager>
+        <ion-slide>
+          <img src={{sofa1}}>
+        </ion-slide>
+        <ion-slide>
+          <img src={{sofa2}}>
+        </ion-slide>
+        <ion-slide>
+          <img src={{sofa3}}>
+        </ion-slide>
+      </ion-slides>
+  </div>
+  <div class="down">
+    <ion-item>
+        <ion-row>
+          <ion-col text-left>
+        <ion-avatar item-left>
+          <img src={{hostimg}}>
+        </ion-avatar>
+      </ion-col>
+      <ion-col text-right>
+        <h1>{{name}}</h1>
+        <h2>{{location}}</h2>
+        <p>Connection: {{connection}}    <span><small>{{degree}}</small></span></p>
+        Rating: <ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon>
+      </ion-col>
+        </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col text-left><ion-icon name="ios-people"></ion-icon></ion-col>
+        <ion-col text-center><ion-icon name="ios-restaurant"></ion-icon></ion-col>
+        <ion-col text-center><ion-icon name="ios-shirt"></ion-icon></ion-col>
+        <ion-col text-right><ion-icon name="ios-paw"></ion-icon></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <h1>Description:</h1><br>
+      <p>{{intro}}</p>
+      <br><br>
+      <h1>Contact Info:</h1><br>
+      <h2>Phone:<p>{{phone}}</p></h2>
+      <h2>Email:<p>{{email}}</p></h2>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col text-left><ion-icon name="ios-wifi"></ion-icon></ion-col>
+        <ion-col text-center><ion-icon name="logo-xbox"></ion-icon></ion-col>
+        <ion-col text-center><ion-icon name="ios-game-controller-b"></ion-icon></ion-col>
+        <ion-col text-right><ion-icon name="ios-snow"></ion-icon></ion-col>
+      </ion-row>
+    </ion-item>
+  </div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Comments Part  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+  <div class="comment">
+    <ion-row>
+      <ion-col text-left>
+        <h2>Comments</h2>
+      </ion-col>
+      <ion-col text-right large>
+        <button type='submit' (click)="addComment()" ion-button round outline medium><p>Post</p></button>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-label color="primary" floating>Write Comments</ion-label>
+      <ion-input type="text" [(ngModel)]="newcomment" name="newcomment"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rate</ion-label>
+      <ion-select [(ngModel)]="rate">
+        <ion-option value="Very Bad">Very Bad&emsp;<ion-icon name="ios-thumbs-down"></ion-icon></ion-option>
+        <ion-option value="Bad">Bad&emsp;<ion-icon name="md-sad"></ion-icon></ion-option>
+        <ion-option value="Medium">Medium&emsp;<ion-icon name="ios-thumbs-down"></ion-icon></ion-option>
+        <ion-option value="Good">Good&emsp;<ion-icon name="md-happy"></ion-icon></ion-option>
+        <ion-option value="Very Good">Very Good&emsp;<ion-icon name="ios-thumbs-up"></ion-icon></ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list *ngFor="let comment of Comments">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src={{comment.headimg}}>
+        </ion-avatar>
+        <h2>{{comment.name}}</h2>
+        <h3>Rate: {{comment.rate}}</h3>
+        <p>{{comment.comment}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
