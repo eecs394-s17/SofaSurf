@@ -11,9 +11,24 @@ import { LastPage } from '../lastpage/lastpage';
   templateUrl: 'list.html'
 })
 export class ListPage {
+  username:string;
+  city:any;
+  country:any;
+  day:any;
+  month:any;
+  year:any;
 
   hosts : Array<{component:any, name:string, location:string, connection:string, degree:string, intro:string, hostimg:string, sofaimg1:any, sofaimg2:any, sofaimg3:any, phone:string, email:string}>
   constructor(public nav: NavController, public navParams: NavParams, public event: Events) {
+    this.event.subscribe('location', (city, country, day, month, year, username) => {
+      this.city = city;
+      this.country = country;
+      console.log(this.city, this.country);
+      this.month = month;
+      this.day = day;
+      this.year = year;
+      this.username = username;
+    });
 
     this.hosts=[
       {
@@ -82,9 +97,8 @@ export class ListPage {
     this.nav.pop();
   }
   GoDetail(page:any){
-    console.log('got the detail.');
     this.nav.push(page.component);
-    this.event.publish('detail', page.name, page.location, page.connection, page.degree, page.intro, page.hostimg, page.sofaimg1, page.sofaimg2, page.sofaimg3, page.phone, page.email);
+    this.event.publish('detail', page.name, page.location, page.connection, page.degree, page.intro, page.hostimg, page.sofaimg1, page.sofaimg2, page.sofaimg3, page.phone, page.email, this.username);
   }
 
 }

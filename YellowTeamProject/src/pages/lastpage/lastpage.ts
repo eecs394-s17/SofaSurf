@@ -27,7 +27,6 @@ export class LastPage {
   sofa3:string;
   phone:string;
   email:string;
-
   constructor(
     public toastCtrl: ToastController,
     public nav: NavController,
@@ -39,10 +38,9 @@ export class LastPage {
 
     ];
     this.newheadimg = "http://www.piz18.com/wp-content/uploads/2015/05/So-beautiful-melancholic-cat-550x371.jpg";
-    this.newname = "Random";
     this.newcomment = "";
     this.rate = "";
-    this.event.subscribe('detail', (name, location, connection, degree, intro, hostimg, sofaimg1, sofaimg2, sofaimg3, phone, email) => {
+    this.event.subscribe('detail', (name, location, connection, degree, intro, hostimg, sofaimg1, sofaimg2, sofaimg3, phone, email, username) => {
       this.name = name;
       this.location = location;
       this.connection = connection;
@@ -54,6 +52,7 @@ export class LastPage {
       this.sofa3 = sofaimg3;
       this.phone = phone;
       this.email = email;
+      this.newname = username;
     });
   };
 

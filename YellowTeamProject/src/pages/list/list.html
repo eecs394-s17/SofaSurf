@@ -9,12 +9,12 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label floating>Country</ion-label>
-      <ion-input type="country"></ion-input>
+      <ion-label>Country</ion-label>
+      <ion-input [(ngModel)]='country' name='country' type="text" placeholder={{country}}></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>City</ion-label>
-      <ion-input type="city"></ion-input>
+      <ion-input [(ngModel)]='city' name='city' type="text" placeholder={{city}}></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Date</ion-label>

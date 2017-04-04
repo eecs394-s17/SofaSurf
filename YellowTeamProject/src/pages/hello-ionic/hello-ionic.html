@@ -8,18 +8,16 @@
 
   <ion-item>
     <ion-label>Username</ion-label>
-    <ion-input type="username"></ion-input>
+    <ion-input [(ngModel)]="username" name="username" type="username"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Password</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input [(ngModel)]="password" name="password" type="password"></ion-input>
   </ion-item>
-
   <button ion-button round icon-left (click)="search()" class="center">
     <!-- <ion-icon name="sunny"></ion-icon> -->
     Log in
   </button>
 
 </ion-list>
-
