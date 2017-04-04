@@ -10,13 +10,14 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
   templateUrl: 'lastpage.html'
 })
 export class LastPage {
-  Comments:Array<{headimg:string, name:string, comment:string, rate:any}>;
+  Comments:Array<{headimg:string, first_name:string, last_name:string, comment:string, rate:any}>;
   newheadimg:string;
   newname:string;
   newcomment:string;
   rate:any;
   warning:string;
-  name:string;
+  first_name:string;
+  last_name:string;
   location:string;
   connection:string;
   degree:string;
@@ -33,15 +34,16 @@ export class LastPage {
     public event: Events
   ){
     this.Comments=[
-      {headimg:"http://www.piz18.com/wp-content/uploads/2015/05/So-beautiful-melancholic-cat-550x371.jpg", name:"Menglei", comment:"This is good!", rate:"Very Good"},
-      {headimg:"http://www.piz18.com/wp-content/uploads/2015/05/So-beautiful-melancholic-cat-550x371.jpg", name:"Alex", comment:"This is bad!", rate:"Very Bad"}
+      {headimg:"http://www.piz18.com/wp-content/uploads/2015/05/So-beautiful-melancholic-cat-550x371.jpg", first_name:"Menglei", last_name:"Smith", comment:"This is good!", rate:"Very Good"},
+      {headimg:"http://www.piz18.com/wp-content/uploads/2015/05/So-beautiful-melancholic-cat-550x371.jpg", first_name:"Alex", last_name:"Joe", comment:"This is bad!", rate:"Very Bad"}
 
     ];
     this.newheadimg = "http://www.piz18.com/wp-content/uploads/2015/05/So-beautiful-melancholic-cat-550x371.jpg";
     this.newcomment = "";
     this.rate = "";
-    this.event.subscribe('detail', (name, location, connection, degree, intro, hostimg, sofaimg1, sofaimg2, sofaimg3, phone, email, username) => {
-      this.name = name;
+    this.event.subscribe('detail', (first_name, last_name, location, connection, degree, intro, hostimg, sofaimg1, sofaimg2, sofaimg3, phone, email, username) => {
+      this.first_name = first_name;
+      this.last_name = last_name;
       this.location = location;
       this.connection = connection;
       this.degree = degree;
@@ -61,7 +63,8 @@ export class LastPage {
     if(this.newcomment != "" && this.rate != ""){
       var comment={
           headimg:this.newheadimg,
-          name:this.newname,
+          first_name:this.first_name,
+          last_name:this.last_name,
           comment:this.newcomment,
           rate:this.rate
       };

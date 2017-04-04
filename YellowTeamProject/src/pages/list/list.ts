@@ -18,7 +18,7 @@ export class ListPage {
   month:any;
   year:any;
 
-  hosts : Array<{component:any, name:string, country:string, city:string, connection:string, degree:string, intro:string, hostimg:string, sofaimg1:any, sofaimg2:any, sofaimg3:any, phone:string, email:string}>
+  hosts : Array<{component:any, first_name:string, last_name:string, country:string, city:string, connection:string, degree:string, intro:string, hostimg:string, sofaimg1:any, sofaimg2:any, sofaimg3:any, phone:string, email:string}>
   constructor(public nav: NavController, public navParams: NavParams, public event: Events) {
     this.event.subscribe('location', (city, country, day, month, year, username) => {
       this.city = city;
@@ -33,7 +33,8 @@ export class ListPage {
     this.hosts=[
       {
        component:LastPage,
-       name:'Rachael Ferm',
+       first_name:'Rachael',
+       last_name:'Ferm',
        country:'United States',
        city: 'Evanston',
        connection:'Jake Ferm',
@@ -49,7 +50,8 @@ export class ListPage {
 
       {
        component:LastPage,
-       name:'Naomi Gutstein',
+       first_name:'Naomi',
+       last_name:'Gutstein',
        country: "United States",
        city:"Evanston",
        connection:'198 mutual friends',
@@ -65,7 +67,8 @@ export class ListPage {
 
       {
         component:LastPage,
-        name:'Jacqueline Korren',
+        first_name:'Jacqueline',
+        last_name:'Korren',
         country:"United States",
         city:"Evanston, Illinois",
         connection:'Verinder Syal',
@@ -86,7 +89,7 @@ export class ListPage {
   }
   GoDetail(page:any){
     this.nav.push(page.component);
-    this.event.publish('detail', page.name, page.location, page.connection, page.degree, page.intro, page.hostimg, page.sofaimg1, page.sofaimg2, page.sofaimg3, page.phone, page.email, this.username);
+    this.event.publish('detail', page.first_name, page.last_name, page.location, page.connection, page.degree, page.intro, page.hostimg, page.sofaimg1, page.sofaimg2, page.sofaimg3, page.phone, page.email, this.username);
   }
 
 }
