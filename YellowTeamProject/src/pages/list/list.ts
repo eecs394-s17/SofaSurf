@@ -18,7 +18,7 @@ export class ListPage {
   month:any;
   year:any;
 
-  hosts : Array<{component:any, name:string, location:string, connection:string, degree:string, intro:string, hostimg:string, sofaimg1:any, sofaimg2:any, sofaimg3:any, phone:string, email:string}>
+  hosts : Array<{component:any, name:string, country:string, city:string, connection:string, degree:string, intro:string, hostimg:string, sofaimg1:any, sofaimg2:any, sofaimg3:any, phone:string, email:string}>
   constructor(public nav: NavController, public navParams: NavParams, public event: Events) {
     this.event.subscribe('location', (city, country, day, month, year, username) => {
       this.city = city;
@@ -33,62 +33,50 @@ export class ListPage {
     this.hosts=[
       {
        component:LastPage,
-       name:'Marty McFly',
-       location:"Evanston",
-       connection:'Menglei Lei',
+       name:'Rachael Ferm',
+       country:'United States',
+       city: 'Evanston',
+       connection:'Jake Ferm',
        degree:"2nd Degree",
-       intro:'some introduction to the sofa11',
-       hostimg:'assets/img/menglei.jpeg',
-       sofaimg1:'assets/img/sofa.JPG',
+       intro: "Hi Friends! I am located in the heart of Evanston and would love to host you! Evanston is only 20 minutes north of the heart of Chicago and is right on Lake Michigan.",
+       hostimg:'assets/images/Rachael.jpg',
+       sofaimg1:'assets/images/Rachael-Sofa.jpg',
        sofaimg2:'assets/img/sofa.JPG',
        sofaimg3:'assets/img/sofa.JPG',
        phone:'812459342',
-       email:'11111@gmail.com'
+       email:'rachael_ferm@gmail.com'
      },
 
       {
        component:LastPage,
-       name:'AAAAA BBBBB',
-       location:"Los Angeles",
-       connection:'Menglei Lei',
+       name:'Naomi Gutstein',
+       country: "United States",
+       city:"Evanston",
+       connection:'198 mutual friends',
        degree:"1st Degree",
-       intro:'some introduction to the sofa22',
-       hostimg:'assets/img/menglei.jpeg',
-       sofaimg1:'assets/img/sofa.JPG',
+       intro:'Hey guys! Thinking of coming to visit Northwestern? I am more than happy to host you and show you around! I can host up to 3 people: one on my couch and two on my air matress.',
+       hostimg:'assets/images/Naomi.jpg',
+       sofaimg1:'assets/images/Naomi-Sofa.jpg',
        sofaimg2:'assets/img/sofa.JPG',
        sofaimg3:'assets/img/sofa.JPG',
        phone:'982351678',
-       email:'222222@gmail.com'
+       email:'naigutstein@gmail.com'
      },
 
       {
         component:LastPage,
-        name:'CCCCC DDDDD',
-        location:"San Jose",
-        connection:'Menglei Lei',
-        degree:"3rd Degree",
-        intro:'some introduction to the sofa33',
-        hostimg:'assets/img/menglei.jpeg',
-        sofaimg1:'assets/img/sofa.JPG',
+        name:'Jacqueline Korren',
+        country:"United States",
+        city:"Evanston, Illinois",
+        connection:'Verinder Syal',
+        degree:"2nd Degree",
+        intro:'Hey hey friends! Thinking of coming to visit Northwestern? Come stay with me! I will show you around the campus and can give you a ton of recommendations for things to do in Chicago. I can host up to 2 people.',
+        hostimg:'assets/images/Jacqueline.jpg',
+        sofaimg1:'assets/images/Jacqueline-Sofa.jpg',
         sofaimg2:'assets/img/sofa.JPG',
         sofaimg3:'assets/img/sofa.JPG',
         phone:'13562453423',
-        email:'33333@gmail.com'
-      },
-
-      {
-        component:LastPage,
-        name:'EEEEE FFFFFF',
-        location:"Chicago",
-        connection:'Menglei Lei',
-        degree:"4th Degree",
-        intro:'some introduction to the sofa44',
-        hostimg:'assets/img/menglei.jpeg',
-        sofaimg1:'assets/img/sofa.JPG',
-        sofaimg2:'assets/img/sofa.JPG',
-        sofaimg3:'assets/img/sofa.JPG',
-        phone:'44542362246',
-        email:'444444@gmail.com'
+        email:'jkorren@gmail.com'
       }
 
     ];
