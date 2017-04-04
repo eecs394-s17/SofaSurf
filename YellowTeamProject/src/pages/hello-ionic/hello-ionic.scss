@@ -1,4 +1,5 @@
 page-hello-ionic {
+	background-color: white;
 	img{
 		margin-left: auto;
 		margin-right: auto;
@@ -9,6 +10,12 @@ page-hello-ionic {
 	    margin-left: auto;
 	    margin-right: auto;
 	    display: block;
+	}
+	.text{
+		text-align:center;
+		color:grey;
+		font-style:italic;
+		font-weight:bold;
 	}
 
 }
