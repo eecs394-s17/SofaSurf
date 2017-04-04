@@ -20,17 +20,24 @@ ion-title{
   margin-top: 10%;
   width:120px;
 }
-
 img{
   opacity:0.8;
 }
-
+.full{
+  height: 300px;
+  width: 100%;
+}
 ion-card:hover{
   -webkit-box-shadow: 1.5px 1.5px 1.5px #9f9fa0;
   -moz-box-shadow: 1.5px 1.5px 1.5px #9f9fa0;
   box-shadow: 1.5px 1.5px 1.5px #9f9fa0;
 
 }
+ion-card ion-slides ion-slide img{
+    height: 100%;
+    width: 100%;
+}
+
 ion-card:hover img{
   opacity:1;
 }
