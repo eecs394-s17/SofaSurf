@@ -9,8 +9,12 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label floating>Location(i.e Evanston, US)</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label>Country</ion-label>
+      <ion-input [(ngModel)]='country' name='country' type="text" placeholder={{country}}></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>City</ion-label>
+      <ion-input [(ngModel)]='city' name='city' type="text" placeholder={{city}}></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Date</ion-label>

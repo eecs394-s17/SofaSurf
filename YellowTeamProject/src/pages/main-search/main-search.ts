@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ListPage } from '../list/list';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
+import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Events } from 'ionic-angular';
 
 @Component({
@@ -8,10 +9,35 @@ import { Events } from 'ionic-angular';
   templateUrl: 'main-search.html'
 })
 export class MainSearchPage {
-  constructor(public nav: NavController, public event: Events) { }
+  username:string;
+  city:any;
+  country:any;
+  day:any;
+  month:any;
+  year:any;
+  constructor(public nav: NavController, public event: Events, public toast: ToastController) {
+    this.city = "";
+    this.country = "";
+    this.day = "";
+    this.month = "";
+    this.year = "";
+    this.event.subscribe('login', (username) => {
+      this.username = username;
+    });
+  }
   search(){
-  	this.event.publish('search')
-  	this.nav.push(ListPage);
+    if(this.city != "" && this.country != "" && this.day != "" && this.month != "" && this.year != ""){
+      this.nav.push(ListPage);
+      this.event.publish('location', this.city, this.country, this.day, this.month, this.year, this.username);
+    }
+    else{
+      let toast = this.toast.create({
+        message: 'Please select correct date or location',
+        position: "middle",
+        duration: 1000
+      });
+      toast.present();
+    }
   }
 
 }

@@ -3,23 +3,23 @@
 <ion-content>
   <img src="assets/images/logo_L.png">
 
-
+  <p id="welcome">Welcome {{username}}</p>
   <ion-list>
 
     <ion-item>
       <ion-label>Country</ion-label>
-      <ion-input type="country"></ion-input>
+      <ion-input [(ngModel)]='country' name='country' type="country"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>City</ion-label>
-      <ion-input type="city"></ion-input>
+      <ion-input [(ngModel)]='city' name='city' type="city"></ion-input>
     </ion-item>
-
+    
     <ion-item>
       <ion-label>Date</ion-label>
 
-      <ion-select [(ngModel)]="month">
+      <ion-select [(ngModel)]="month" name='month'>
           <ion-option value="01">January</ion-option>
           <ion-option value="02">February</ion-option>
           <ion-option value="03">March</ion-option>
@@ -34,7 +34,7 @@
           <ion-option value="12" checked="true">December</ion-option>
         </ion-select>
 
-      <ion-select [(ngModel)]="day">
+      <ion-select [(ngModel)]="day" name='day'>
         <ion-option value="1" selected="true">1</ion-option>
         <ion-option value="2" selected="true">2</ion-option>
         <ion-option value="3" selected="true">3</ion-option>
@@ -68,7 +68,7 @@
         <ion-option value="31" selected="true">31</ion-option>
       </ion-select>
 
-      <ion-select [(ngModel)]="year">
+      <ion-select [(ngModel)]="year" name='year'>
           <ion-option>2017</ion-option>
           <ion-option>2018</ion-option>
           <ion-option>2019</ion-option>

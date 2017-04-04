@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MainSearchPage } from '../main-search/main-search';
-import { NavController } from 'ionic-angular';
+import { NavController, Events, ToastController } from 'ionic-angular';
 
 
 @Component({
@@ -8,11 +8,25 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'hello-ionic.html',
 })
 export class HelloIonicPage {
-  constructor(public nav: NavController) { }
+  username:string;
+  password:string;
+  constructor(public nav: NavController, public event: Events, public toast: ToastController) {
+    this.username = "";
+    this.password = "";
+  }
+
   search(){
-  	this.nav.push(MainSearchPage);
+    if(this.username != "" && this.password != ""){
+    	this.nav.push(MainSearchPage);
+      this.event.publish('login', this.username);
+    }
+    else{
+    let toast = this.toast.create({
+      message: 'Please input valid account',
+      position: "middle",
+      duration: 1000
+    });
+    toast.present();
+    }
   }
 }
-
-
-
