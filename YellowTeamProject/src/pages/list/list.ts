@@ -41,8 +41,8 @@ export class ListPage {
        intro: "Hi Friends! I am located in the heart of Evanston and would love to host you! Evanston is only 20 minutes north of the heart of Chicago and is right on Lake Michigan.",
        hostimg:'assets/images/Rachael.jpg',
        sofaimg1:'assets/images/Rachael-Sofa.jpg',
-       sofaimg2:'assets/img/sofa.JPG',
-       sofaimg3:'assets/img/sofa.JPG',
+       sofaimg2:'assets/images/Rachael-2.jpg',
+       sofaimg3:'assets/images/Rachael-3.jpg',
        phone:'812459342',
        email:'rachael_ferm@gmail.com'
      },
@@ -57,8 +57,8 @@ export class ListPage {
        intro:'Hey guys! Thinking of coming to visit Northwestern? I am more than happy to host you and show you around! I can host up to 3 people: one on my couch and two on my air matress.',
        hostimg:'assets/images/Naomi.jpg',
        sofaimg1:'assets/images/Naomi-Sofa.jpg',
-       sofaimg2:'assets/img/sofa.JPG',
-       sofaimg3:'assets/img/sofa.JPG',
+       sofaimg2:'assets/images/Naomi-2.jpg',
+       sofaimg3:'assets/images/Naomi-3.jpg',
        phone:'982351678',
        email:'naigutstein@gmail.com'
      },
@@ -73,8 +73,8 @@ export class ListPage {
         intro:'Hey hey friends! Thinking of coming to visit Northwestern? Come stay with me! I will show you around the campus and can give you a ton of recommendations for things to do in Chicago. I can host up to 2 people.',
         hostimg:'assets/images/Jacqueline.jpg',
         sofaimg1:'assets/images/Jacqueline-Sofa.jpg',
-        sofaimg2:'assets/img/sofa.JPG',
-        sofaimg3:'assets/img/sofa.JPG',
+        sofaimg2:'assets/images/Jacqueline-2.jpg',
+        sofaimg3:'assets/images/Jacqueline-3.jpg',
         phone:'13562453423',
         email:'jkorren@gmail.com'
       }
