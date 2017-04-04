@@ -1,6 +1,6 @@
 page-list{
 ion-content .button{
-  background-color: #8DCAFF;
+  // background-color: #8DCAFF;
 }
 ion-title{
   text-align: right;
@@ -12,6 +12,15 @@ ion-title{
 // ion-card:hover{
 //   background-color: #f7f9fc;
 // }
+#gobackbut{
+  text-align: left;
+}
+#logo{
+  position: relative;
+  right:50%;
+  margin-top: 10%;
+}
+
 img{
   opacity:0.8;
 }
