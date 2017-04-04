@@ -13,5 +13,9 @@ export class MainSearchPage {
   	this.event.publish('search')
   	this.nav.push(ListPage);
   }
+  Goback(){
+    this.nav.pop();
+  }
 
 }
+

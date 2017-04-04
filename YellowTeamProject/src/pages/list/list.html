@@ -1,16 +1,20 @@
 <ion-header>
   <ion-navbar>
     <ion-row>
-    <ion-title>SofaSurf</ion-title>
-  </ion-row>
+      <ion-title>SofaSurf</ion-title>
+    </ion-row>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label floating>Location(i.e Evanston, US)</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating>Country</ion-label>
+      <ion-input type="country"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>City</ion-label>
+      <ion-input type="city"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Date</ion-label>
@@ -72,7 +76,8 @@
     </ion-item>
     <ion-row>
       <ion-col text-center>
-        <button type='submit' name='search' ion-button round small><p>Search&emsp;</p><ion-icon name="arrow-forward"></ion-icon></button>
+        <button ion-button round small icon-left class="center"><ion-icon name="sunny"></ion-icon>Surf</button>
+        <!-- <button type='submit' name='search' ion-button round small><p>Search&emsp;</p><ion-icon name="arrow-forward"></ion-icon></button> -->
       </ion-col>
     </ion-row>
   </ion-list>
