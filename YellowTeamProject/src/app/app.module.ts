@@ -9,6 +9,14 @@ import { FormsModule } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LastPage } from '../pages/lastpage/lastpage';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
+const cloudSettings : CloudSettings = {
+  'core': {
+    'app_id': '14e6e7d0'
+  }
+};
+
 
 @NgModule({
   declarations: [
@@ -20,7 +28,8 @@ import { LastPage } from '../pages/lastpage/lastpage';
     LastPage,
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
