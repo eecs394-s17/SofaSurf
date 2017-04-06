@@ -17,6 +17,21 @@ const cloudSettings : CloudSettings = {
   }
 };
 
+import {
+  AngularFireModule,
+  AuthMethods,
+  AuthProviders
+} from "angularfire2";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD3cLDMHMx5L92kWzgXA1ThCkrIEzuksKo",
+  authDomain: "test-d85aa.firebaseapp.com",
+  databaseURL: "https://test-d85aa.firebaseio.com",
+  projectId: "test-d85aa",
+  storageBucket: "test-d85aa.appspot.com",
+  messagingSenderId: "264129880167"
+};
+
 
 @NgModule({
   declarations: [
@@ -29,7 +44,11 @@ const cloudSettings : CloudSettings = {
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
+    AngularFireModule.initializeApp(firebaseConfig,{
+      provider: AuthProviders.Facebook,
+      method: AuthMethods.Popup
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
