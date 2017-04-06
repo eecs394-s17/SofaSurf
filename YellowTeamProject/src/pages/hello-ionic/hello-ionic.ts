@@ -17,7 +17,7 @@ export class HelloIonicPage {
     this.af.auth.subscribe(user => {
       if(user) {
         this.user = user;
-        console.log('success');
+        this.nav.push(MainSearchPage);
       }
       else {
         this.user = {};
@@ -34,6 +34,7 @@ export class HelloIonicPage {
   logout() {
     this.af.auth.logout();
   }
+
 
   search(){
     if(this.username != "" && this.password != ""){
