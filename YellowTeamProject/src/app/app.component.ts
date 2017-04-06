@@ -9,6 +9,8 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
 import { LastPage } from '../pages/lastpage/lastpage';
 
+import firebase from 'firebase';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -25,13 +27,22 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
   ) {
-    this.initializeApp();
+    // this.initializeApp();
 
     // set our app's pages
     this.pages = [
       { title: 'Hello Ionic', component: HelloIonicPage },
       { title: 'My First List', component: ListPage }
     ];
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyAV3cWD0196M3beNLyST1tx6MozgQ-eAnI",
+      authDomain: "sofasurf-9d718.firebaseapp.com",
+      databaseURL: "https://sofasurf-9d718.firebaseio.com",
+      projectId: "sofasurf-9d718",
+      storageBucket: "sofasurf-9d718.appspot.com",
+      messagingSenderId: "161909916669"
+    });
   }
 
   initializeApp() {

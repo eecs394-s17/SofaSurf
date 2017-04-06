@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { MainSearchPage } from '../main-search/main-search';
 import { NavController, Events, ToastController } from 'ionic-angular';
+// import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import firebase from 'firebase';
+
 
 
 @Component({
@@ -10,9 +13,17 @@ import { NavController, Events, ToastController } from 'ionic-angular';
 export class HelloIonicPage {
   username:string;
   password:string;
-  constructor(public nav: NavController, public event: Events, public toast: ToastController) {
+  // users: FirebaseListObservable<any>;
+
+  constructor(public nav: NavController, public event: Events,
+    public toast: ToastController) {
     this.username = "";
     this.password = "";
+
+    firebase.database().ref('users/' + "1").set({
+      name: 'john',
+      email: 'test@gmail.com'
+    });
   }
 
   search(){

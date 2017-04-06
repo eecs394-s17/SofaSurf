@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LastPage } from '../pages/lastpage/lastpage';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+// import { AngularFireModule} from 'angularfire2';
 
 const cloudSettings : CloudSettings = {
   'core': {
@@ -17,6 +18,14 @@ const cloudSettings : CloudSettings = {
   }
 };
 
+// export const firebaseConfig = {
+  // apiKey: "AIzaSyAV3cWD0196M3beNLyST1tx6MozgQ-eAnI",
+  // authDomain: "sofasurf-9d718.firebaseapp.com",
+  // databaseURL: "https://sofasurf-9d718.firebaseio.com",
+  // projectId: "sofasurf-9d718",
+  // storageBucket: "sofasurf-9d718.appspot.com",
+  // messagingSenderId: "161909916669"
+// }
 
 @NgModule({
   declarations: [
@@ -30,6 +39,7 @@ const cloudSettings : CloudSettings = {
   imports: [
     IonicModule.forRoot(MyApp),
     CloudModule.forRoot(cloudSettings)
+    // AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
