@@ -10,14 +10,18 @@ import { AngularFire, AuthProviders } from 'angularfire2';
 export class HelloIonicPage {
   username:string;
   password:string;
-  user = {};
+  user:any;
   constructor(public nav: NavController, public event: Events, public toast: ToastController, public af: AngularFire) {
     this.username = "";
     this.password = "";
     this.af.auth.subscribe(user => {
       if(user) {
-        this.user = user;
+        this.user = user.auth.providerData['0'];
+        console.log(this.user);
+        console.log(this.user.displayName);
         this.nav.push(MainSearchPage);
+        this.event.publish('login', this.user.displayName);
+
       }
       else {
         this.user = {};
