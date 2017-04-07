@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams, Nav } from 'ionic-angular';
 import { Events } from 'ionic-angular';
-import { ItemDetailsPage } from '../item-details/item-details';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { LastPage } from '../lastpage/lastpage';
+// import firebase from 'firebase';
+import { AngularFireModule } from 'angularfire2';
 
 @Component({
   selector: 'page-list',
@@ -17,8 +18,9 @@ export class ListPage {
   day:any;
   month:any;
   year:any;
+  db:any;
+  hostList: Array<{name:string, city:string, country:string, email:string, canHost:any}>;
 
-  hosts : Array<{component:any, first_name:string, last_name:string, country:string, city:string, connection:string, degree:string, intro:string, hostimg:string, sofaimg1:any, sofaimg2:any, sofaimg3:any, phone:string, email:string}>
   constructor(public nav: NavController, public navParams: NavParams, public event: Events) {
     this.event.subscribe('location', (city, country, day, month, year, username) => {
       this.city = city;
@@ -29,60 +31,20 @@ export class ListPage {
       this.year = year;
       this.username = username;
     });
-
-    this.hosts=[
-      {
-       component:LastPage,
-       first_name:'Rachael',
-       last_name:'Ferm',
-       country:'UK',
-       city: 'London',
-       connection:'Jake Ferm',
-       degree:"2nd Degree",
-       intro: "Hi Friends! I am located in the heart of Camden Market and would love to host you! I enjoy watching football and street art.",
-       hostimg:'assets/images/Rachael.jpg',
-       sofaimg1:'assets/images/Rachael-Sofa.jpg',
-       sofaimg2:'assets/images/Rachael-2.jpg',
-       sofaimg3:'assets/images/Rachael-3.jpg',
-       phone:'812459342',
-       email:'rachael_ferm@gmail.com'
-     },
-
-      {
-       component:LastPage,
-       first_name:'Naomi',
-       last_name:'Gutstein',
-       country: "UK",
-       city:"London",
-       connection:'198 mutual friends',
-       degree:"1st Degree",
-       intro:'Hey guys! Thinking of coming to visit London? I am more than happy to host you and show you around! I can host up to 3 people: one on my couch and two on my air matress.',
-       hostimg:'assets/images/Naomi.jpg',
-       sofaimg1:'assets/images/Naomi-Sofa.jpg',
-       sofaimg2:'assets/images/Naomi-2.jpg',
-       sofaimg3:'assets/images/Naomi-3.jpg',
-       phone:'982351678',
-       email:'naigutstein@gmail.com'
-     },
-
-      {
-        component:LastPage,
-        first_name:'Jacqueline',
-        last_name:'Korren',
-        country:"UK",
-        city:"London",
-        connection:'Verinder Syal',
-        degree:"2nd Degree",
-        intro:"Hey hey friends! I'm a 3rd year student at UCL and would love to show you around campus. I can host up to 2 people in my apartment.",
-        hostimg:'assets/images/Jacqueline.jpg',
-        sofaimg1:'assets/images/Jacqueline-Sofa.jpg',
-        sofaimg2:'assets/images/Jacqueline-2.jpg',
-        sofaimg3:'assets/images/Jacqueline-3.jpg',
-        phone:'13562453423',
-        email:'jkorren@gmail.com'
-      }
-
-    ];
+    this.hostList = [];
+    this.db = firebase.database();
+    this.db.ref('/users').orderByChild('City').equalTo('Chicago').on("value", function(snapshot){
+      snapshot.forEach(function(data){
+        console.log(data.key + "," + data.val().Name);
+        this.hostList.push({
+          name: data.val().Name,
+          city: data.val().City,
+          country : data.val().Country,
+          email: data.val().Email,
+          canHost: data.val().canHost
+        });
+      });
+    });
   }
   Goback(){
     this.nav.pop();

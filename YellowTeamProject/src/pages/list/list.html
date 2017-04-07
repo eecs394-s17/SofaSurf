@@ -89,12 +89,12 @@
       </ion-col>
     </ion-row>
   </ion-list>
-  <ion-card *ngFor="let host of hosts" (click)="GoDetail(host)">
+  <ion-card *ngFor="let host of hostList">
 
-      <ion-slides pager>
+      <!-- <ion-slides pager>
 
         <ion-slide>
-          <img class="full" src={{host.sofaimg1}}>
+          <img class="full" src={{host.CIty}}>
         </ion-slide>
 
         <ion-slide>
@@ -105,18 +105,18 @@
           <img class="full" src={{host.sofaimg3}}>
         </ion-slide>
 
-    </ion-slides>
+    </ion-slides> -->
 
     <ion-item>
-      <ion-avatar item-left>
+      <!-- <ion-avatar item-left>
         <img src={{host.hostimg}}>
-      </ion-avatar>
-      <h1>{{host.first_name}} {{host.last_name}}</h1>
-      <h2>{{host.location}}</h2>
-      <p>Connection: {{host.connection}}    <span><small>{{host.degree}}</small></span></p>
+      </ion-avatar> -->
+      <h1>{{host.name}}</h1>
+      <h2>{{host.city}}</h2>
+      <!-- <p>Connection: {{host.connection}}    <span><small>{{host.degree}}</small></span></p> -->
 
     </ion-item>
-    <ion-card-content>
+    <!-- <ion-card-content>
       <h1>{{host.intro}}</h1>
     </ion-card-content>
 
@@ -127,7 +127,7 @@
     </ion-col>
     <ion-row>
     <p>&emsp;</p>
-    </ion-row>
+    </ion-row> -->
 
 
   </ion-card>

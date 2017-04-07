@@ -9,6 +9,8 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
 import { LastPage } from '../pages/lastpage/lastpage';
 
+import { AF } from '../providers/af';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,12 +21,32 @@ export class MyApp {
   rootPage: any = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
 
+  public isLoggedIn: boolean;
+
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
+    public afService: AF
   ) {
+
+    this.afService.af.auth.subscribe(
+      (auth) => {
+        if (auth == null) {
+          console.log("Not Logged in.");
+          this.isLoggedIn = false;
+        } else {
+          console.log("Successfully Logged in");
+          if(auth.facebook) {
+            this.afService.displayName = auth.facebook.displayName;
+            this.afService.email = auth.facebook.email;
+          }
+          this.isLoggedIn = true;
+        }
+      }
+    );
+
     this.initializeApp();
 
     // set our app's pages

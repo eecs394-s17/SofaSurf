@@ -3,7 +3,6 @@ import { ListPage } from '../list/list';
 import { NavController, ToastController } from 'ionic-angular';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Events } from 'ionic-angular';
-
 @Component({
   selector: 'page-main-search',
   templateUrl: 'main-search.html'
@@ -16,16 +15,19 @@ export class MainSearchPage {
   month:any;
   year:any;
   constructor(public nav: NavController, public event: Events, public toast: ToastController) {
-    this.city = "";
-    this.country = "";
-    this.day = "";
-    this.month = "";
-    this.year = "";
+    this.city = "fdsa";
+    this.country = "fdsa";
+    this.day = "1";
+    this.month = "Jan";
+    this.year = "2017";
     this.event.subscribe('login', (username) => {
       this.username = username;
     });
   }
   search(){
+
+
+
     if(this.city != "" && this.country != "" && this.day != "" && this.month != "" && this.year != ""){
       this.nav.push(ListPage);
       this.event.publish('location', this.city, this.country, this.day, this.month, this.year, this.username);
@@ -44,4 +46,3 @@ export class MainSearchPage {
   }
 
 }
-
