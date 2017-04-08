@@ -16,48 +16,51 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    Showing search results for {{ city }}.
+    Showing search results for {{ city }}, {{ country }}.
   </ion-row>
-  <ion-card *ngFor="let host of hostList | async">
+  <ng-container *ngFor="let host of hostList | async">
+    <ion-card *ngIf="host.City == city">
 
-      <!-- <ion-slides pager>
+        <!-- <ion-slides pager>
 
-        <ion-slide>
-          <img class="full" src={{host.CIty}}>
-        </ion-slide>
+          <ion-slide>
+            <img class="full" src={{host.CIty}}>
+          </ion-slide>
 
-        <ion-slide>
-          <img class="full" src={{host.sofaimg2}}>
-        </ion-slide>
+          <ion-slide>
+            <img class="full" src={{host.sofaimg2}}>
+          </ion-slide>
 
-        <ion-slide>
-          <img class="full" src={{host.sofaimg3}}>
-        </ion-slide>
+          <ion-slide>
+            <img class="full" src={{host.sofaimg3}}>
+          </ion-slide>
 
-    </ion-slides> -->
+      </ion-slides> -->
 
-    <ion-item>
-      <!-- <ion-avatar item-left>
-        <img src={{host.hostimg}}>
-      </ion-avatar> -->
-      <h1>{{host.Name}}</h1>
-      <h2>{{host.City}}</h2>
-      <!-- <p>Connection: {{host.connection}}    <span><small>{{host.degree}}</small></span></p> -->
+      <ion-item>
+        <!-- <ion-avatar item-left>
+          <img src={{host.hostimg}}>
+        </ion-avatar> -->
+        <h1>{{host.Name}}</h1>
+        <h2>{{host.City}}, {{host.Country}}</h2>
+        <!-- <p>Connection: {{host.connection}}    <span><small>{{host.degree}}</small></span></p> -->
 
-    </ion-item>
-    <!-- <ion-card-content>
-      <h1>{{host.intro}}</h1>
-    </ion-card-content>
+      </ion-item>
+      <!-- <ion-card-content>
+        <h1>{{host.intro}}</h1>
+      </ion-card-content>
 
-    <ion-col text-right>
-      <ion-note text-right>
-        Rating: <ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon>
-      </ion-note>
-    </ion-col>
-    <ion-row>
-    <p>&emsp;</p>
-    </ion-row> -->
+      <ion-col text-right>
+        <ion-note text-right>
+          Rating: <ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon>
+        </ion-note>
+      </ion-col>
+      <ion-row>
+      <p>&emsp;</p>
+      </ion-row> -->
 
 
-  </ion-card>
+    </ion-card>
+
+  </ng-container>
 </ion-content>

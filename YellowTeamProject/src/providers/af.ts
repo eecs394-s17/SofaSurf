@@ -27,13 +27,17 @@ export class AF {
     this.hostList.push(hostInfo);
   }
 
-  hostsByCity(city){
+  hostsByCountry(country){
     return this.af.database.list('users', {
       query: {
-        orderByChild: 'City',
-        equalTo: city
+        orderByChild: 'Country',
+        equalTo: country
       }
     });
   }
+
+  // hostsByLocation(city, country) {
+  //   return this.af.database.list('users', [])
+  // }
 
 }

@@ -16,7 +16,7 @@ import { AF } from '../../providers/af';
 export class ListPage {
   // username:string;
   city: string;
-  // country:any;
+  country: string;
   // day:any;
   // month:any;
   // year:any;
@@ -27,7 +27,8 @@ export class ListPage {
   constructor(public nav: NavController, public navParams: NavParams, public event: Events, public afService: AF) {
     this.event.subscribe('location', (city, country, day, month, year, username) => {
       this.city = city;
-      this.hostList = this.afService.hostsByCity(this.city);
+      this.country = country;
+      this.hostList = this.afService.hostsByCountry(this.country);
     });
   }
   Goback(){
