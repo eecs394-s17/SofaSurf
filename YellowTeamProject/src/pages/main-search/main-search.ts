@@ -15,7 +15,7 @@ export class MainSearchPage {
   month:any;
   year:any;
   constructor(public nav: NavController, public event: Events, public toast: ToastController) {
-    this.city = "fdsa";
+    this.city = "Evanston";
     this.country = "fdsa";
     this.day = "1";
     this.month = "Jan";
@@ -25,9 +25,6 @@ export class MainSearchPage {
     });
   }
   search(){
-
-
-
     if(this.city != "" && this.country != "" && this.day != "" && this.month != "" && this.year != ""){
       this.nav.push(ListPage);
       this.event.publish('location', this.city, this.country, this.day, this.month, this.year, this.username);

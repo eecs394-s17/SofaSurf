@@ -11,7 +11,6 @@ export class AF {
   constructor(public af: AngularFire) {
     this.hostList = this.af.database.list('users');
   }
-  
 
   loginWithFacebook() {
     return this.af.auth.login({
@@ -26,6 +25,15 @@ export class AF {
 
   addHost(hostInfo){
     this.hostList.push(hostInfo);
+  }
+
+  hostsByCity(city){
+    return this.af.database.list('users', {
+      query: {
+        orderByChild: 'City',
+        equalTo: city
+      }
+    });
   }
 
 }
