@@ -89,7 +89,7 @@
       </ion-col>
     </ion-row>
   </ion-list>
-  <ion-card *ngFor="let host of hostList">
+  <ion-card *ngFor="let host of hostList | async">
 
       <!-- <ion-slides pager>
 
@@ -111,8 +111,8 @@
       <!-- <ion-avatar item-left>
         <img src={{host.hostimg}}>
       </ion-avatar> -->
-      <h1>{{host.name}}</h1>
-      <h2>{{host.city}}</h2>
+      <h1>{{host.Name}}</h1>
+      <h2>{{host.City}}</h2>
       <!-- <p>Connection: {{host.connection}}    <span><small>{{host.degree}}</small></span></p> -->
 
     </ion-item>

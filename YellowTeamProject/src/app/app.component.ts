@@ -1,13 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-
-import { Platform, MenuController, Nav, NavController } from 'ionic-angular';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { Platform, MenuController, Nav, NavController } from 'ionic-angular';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
 import { LastPage } from '../pages/lastpage/lastpage';
+import { MainSearchPage } from '../pages/main-search/main-search';
 
 import { AF } from '../providers/af';
 
@@ -33,27 +33,25 @@ export class MyApp {
 
     this.afService.af.auth.subscribe(
       (auth) => {
-        if (auth == null) {
+        if(auth == null) {
           console.log("Not Logged in.");
           this.isLoggedIn = false;
-        } else {
-          console.log("Successfully Logged in");
-          if(auth.facebook) {
-            this.afService.displayName = auth.facebook.displayName;
-            this.afService.email = auth.facebook.email;
-          }
+          this.nav.push( HelloIonicPage );
+        }
+        else {
+          console.log("Successfully Logged in.");
+          // UPDATE: I forgot this at first. Without it when a user is logged in and goes directly to /login
+          // the user did not get redirected to the home page.
+          this.afService.displayName = auth.facebook.displayName;
+          this.afService.email = auth.facebook.email;
           this.isLoggedIn = true;
+          
+          this.nav.push( MainSearchPage );
         }
       }
     );
-
+    
     this.initializeApp();
-
-    // set our app's pages
-    this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
-    ];
   }
 
   initializeApp() {
@@ -63,12 +61,5 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  }
-
-  openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.menu.close();
-    // navigate to the new page if it is not the current page
-    this.nav.push(page.component);
   }
 }
