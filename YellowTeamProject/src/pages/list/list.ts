@@ -26,7 +26,8 @@ export class ListPage {
 
   constructor(public nav: NavController, public navParams: NavParams, public event: Events, public afService: AF) {
     this.event.subscribe('location', (city, country, day, month, year, username) => {
-      this.hostList = this.afService.hostsByCity(city);
+      this.city = city;
+      this.hostList = this.afService.hostsByCity(this.city);
     });
   }
   Goback(){

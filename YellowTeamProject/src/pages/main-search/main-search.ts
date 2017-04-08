@@ -10,13 +10,11 @@ import { Events } from 'ionic-angular';
 export class MainSearchPage {
   username:string;
   city:any;
-  country:any;
   day:any;
   month:any;
   year:any;
   constructor(public nav: NavController, public event: Events, public toast: ToastController) {
     this.city = "Evanston";
-    this.country = "fdsa";
     this.day = "1";
     this.month = "Jan";
     this.year = "2017";
@@ -25,9 +23,9 @@ export class MainSearchPage {
     });
   }
   search(){
-    if(this.city != "" && this.country != "" && this.day != "" && this.month != "" && this.year != ""){
+    if(this.city != "" && this.day != "" && this.month != "" && this.year != ""){
       this.nav.push(ListPage);
-      this.event.publish('location', this.city, this.country, this.day, this.month, this.year, this.username);
+      this.event.publish('location', this.city, this.day, this.month, this.year, this.username);
     }
     else{
       let toast = this.toast.create({
