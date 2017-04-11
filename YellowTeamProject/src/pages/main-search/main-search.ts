@@ -12,27 +12,21 @@ import {AutocompletePage} from '../autocomplete/autocomplete';
   templateUrl: 'main-search.html'
 })
 export class MainSearchPage {
-  username:string;
-  day:any;
-  month:any;
-  year:any;
-  address:any;
+  address: any;
+
   autocompleteLocality: any;
   autocompleteCountry: any;
   localityForm: any;
   countryForm: any;
-  localDate: any;
+
+  localStartDate: any;
+  localEndDate: any;
+
   constructor(public nav: NavController, public event: Events, public toast: ToastController, public modalCtrl: ModalController) {
     this.address = {
           city: '',
           country: ''
         };
-    this.day = "1";
-    this.month = "Jan";
-    this.year = "2017";
-    this.event.subscribe('login', (username) => {
-      this.username = username;
-    });
 
     this.localityForm = {
       locality: 'long_name',
@@ -42,22 +36,11 @@ export class MainSearchPage {
       country: 'long_name'
     };
 
-    // this.localDate = new Date();
-
-  //   this.datePicker.show({
-  //   date: new Date(),
-  //   mode: 'date',
-  //   androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-  // }).then(
-  //   date => console.log('Got date: ', date),
-  //   err => console.log('Error occurred while getting date: ', err)
-  // );
-
   }
   search(){
     if(this.address.country != ""){
       this.nav.push(ListPage);
-      this.event.publish('location', this.address.city, this.address.country, this.day, this.month, this.year, this.username);
+      this.event.publish('location', this.address.city, this.address.country, this.localStartDate, this.localEndDate);
     }
     else{
       let toast = this.toast.create({
@@ -68,9 +51,11 @@ export class MainSearchPage {
       toast.present();
     }
   }
+
   Goback(){
     this.nav.pop();
   }
+
   showAddressModal () {
     let modal = this.modalCtrl.create(AutocompletePage);
     let me = this;
@@ -84,9 +69,12 @@ export class MainSearchPage {
     modal.present();
   }
 
-  setDate(data: Date){
-    this.localDate = data;
+  setStartDate(data: Date){
+    this.localStartDate = data;
+  }
 
+  setEndDate(data: Date){
+    this.localEndDate = data;
   }
 
 
