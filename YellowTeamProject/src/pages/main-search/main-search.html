@@ -9,12 +9,13 @@
 
     <ion-item>
       <ion-label>City</ion-label>
-      <ion-input [(ngModel)]='city' name='city' placeholder="City" id="locality" type="text"></ion-input>
+      <!-- <ion-input [(ngModel)]='city' name='city' placeholder="City" id="locality" type="text"></ion-input> -->
+      <ion-input (click)="showAddressModal()" [(ngModel)]="address.city" type="text" placeholder="Pick an address"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Country</ion-label>
-      <ion-input [(ngModel)]='country' name='country' placeholder='Country' id="country" type="text" ></ion-input>
+      <ion-input [(ngModel)]='address.country' name='country' placeholder='Country' id="country" type="text" ></ion-input>
     </ion-item>
 
 

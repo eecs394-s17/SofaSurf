@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ListPage } from '../list/list';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, ModalController } from 'ionic-angular';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Events } from 'ionic-angular';
+import {googlemaps} from 'googlemaps';
+import {AutocompletePage} from '../autocomplete/autocomplete';
 @Component({
   selector: 'page-main-search',
   templateUrl: 'main-search.html'
@@ -14,13 +16,17 @@ export class MainSearchPage {
   day:any;
   month:any;
   year:any;
-
+  address:any;
   autocompleteLocality: any;
   autocompleteCountry: any;
   localityForm: any;
   countryForm: any;
 
-  constructor(public nav: NavController, public event: Events, public toast: ToastController) {
+  constructor(public nav: NavController, public event: Events, public toast: ToastController, public modalCtrl: ModalController) {
+    this.address = {
+          city: '',
+          country: ''
+        };
     this.city = "Evanston";
     this.country = "US";
     this.day = "1";
@@ -56,34 +62,48 @@ export class MainSearchPage {
   Goback(){
     this.nav.pop();
   }
-
-  initAutocomplete() {
-    this.autocompleteLocality = new google.maps.places.Autocomplete(
-        (document.getElementById('locality')),
-        {types: ['geocode']});
-    this.autocompleteLocality.addListener('place_changed', function(){fillInAddress(this.autocompleteLocality, true)});
-    
-    this.autocompleteCountry = new google.maps.places.Autocomplete(
-        (document.getElementById('country')),
-        {types: ['geocode']});
-    this.autocompleteCountry.addListener('place_changed', function() {fillInAddress(this.autocompleteCountry, false)});
+  showAddressModal () {
+    let modal = this.modalCtrl.create(AutocompletePage);
+    let me = this;
+    modal.onDidDismiss(data => {
+      var address = data.split(',');
+      console.log(address[0]);
+      console.log(address[address.length - 1]);
+      this.address.city = address[0];
+      this.address.country = address[address.length - 1];
+    });
+    modal.present();
   }
 
-  fillInAddress(autocomplete, isCity) {
-    var place = autocomplete.getPlace();
-    var componentForm;
-    
-    for (var i = 0; i < place.address_components.length; i++) {
-      var addressType = place.address_components[i].types[0];
-      if (isCity) {
-        componentForm = this.localityForm;
-      } else {
-        componentForm = this.countryForm;
-      }
-      if (componentForm[addressType]) {
-        document.getElementById(addressType).value = place.address_components[i][componentForm[addressType]];
-      }
-    }
-  };
+  // initAutocomplete() {
+  //   console.log('enter initAutocomplete!!!!!!!!!');
+  //   this.autocompleteLocality = new google.maps.places.Autocomplete(
+  //       (<HTMLInputElement>document.getElementById('locality')),
+  //       {types: ['geocode']});
+  //   this.autocompleteLocality.addListener('place_changed', function(){this.fillInAddress(this.autocompleteLocality, true)});
+  //
+  //   this.autocompleteCountry = new google.maps.places.Autocomplete(
+  //       (<HTMLInputElement>document.getElementById('country')),
+  //       {types: ['geocode']});
+  //   this.autocompleteCountry.addListener('place_changed', function() {this.fillInAddress(this.autocompleteCountry, false)});
+  // }
+  //
+  // fillInAddress(autocomplete, isCity) {
+  //   console.log('enter fillInAddress!!!!!!');
+  //   var place = autocomplete.getPlace();
+  //   var componentForm;
+  //
+  //   for (var i = 0; i < place.address_components.length; i++) {
+  //     var addressType = place.address_components[i].types[0];
+  //     if (isCity) {
+  //       componentForm = this.localityForm;
+  //     } else {
+  //       componentForm = this.countryForm;
+  //     }
+  //     if (componentForm[addressType]) {
+  //       //<HTMLInputElement>document.getElementById(addressType).value = place.address_components[i][componentForm[addressType]];
+  //     }
+  //   }
+  // };
 
 }

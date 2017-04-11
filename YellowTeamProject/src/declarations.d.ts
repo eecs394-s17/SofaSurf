@@ -12,3 +12,5 @@
   https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 */
 declare module '*';
+/// <reference path="../node_modules/@types/googlemaps/index.d.ts" />
+declare module 'googlemaps';

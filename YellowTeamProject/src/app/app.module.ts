@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LastPage } from '../pages/lastpage/lastpage';
+import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AngularFireModule,AuthProviders,AuthMethods } from 'angularfire2';
 import { AF } from "../providers/af";
@@ -35,6 +36,7 @@ export const firebaseConfig = {
     MainSearchPage,
     ListPage,
     LastPage,
+    AutocompletePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -50,7 +52,8 @@ export const firebaseConfig = {
     HelloIonicPage,
     MainSearchPage,
     ListPage,
-    LastPage
+    LastPage,
+    AutocompletePage
   ],
   providers: [
     StatusBar,
