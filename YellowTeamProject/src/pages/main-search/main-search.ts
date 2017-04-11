@@ -5,6 +5,8 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Events } from 'ionic-angular';
 import {googlemaps} from 'googlemaps';
 import {AutocompletePage} from '../autocomplete/autocomplete';
+// import { DatePicker } from '@ionic-native/date-picker';
+
 @Component({
   selector: 'page-main-search',
   templateUrl: 'main-search.html'
@@ -21,15 +23,15 @@ export class MainSearchPage {
   autocompleteCountry: any;
   localityForm: any;
   countryForm: any;
-
+  localDate: any;
   constructor(public nav: NavController, public event: Events, public toast: ToastController, public modalCtrl: ModalController) {
     this.address = {
           city: '',
           country: ''
         };
-    this.city = "Evanston";
-    this.country = "US";
     this.day = "1";
+    // this.city = "Evanston";
+    // this.country = "US";
     this.month = "Jan";
     this.year = "2017";
     this.event.subscribe('login', (username) => {
@@ -43,6 +45,17 @@ export class MainSearchPage {
     this.countryForm = {
       country: 'long_name'
     };
+
+    // this.localDate = new Date();
+
+  //   this.datePicker.show({
+  //   date: new Date(),
+  //   mode: 'date',
+  //   androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+  // }).then(
+  //   date => console.log('Got date: ', date),
+  //   err => console.log('Error occurred while getting date: ', err)
+  // );
 
   }
   search(){
@@ -66,15 +79,36 @@ export class MainSearchPage {
     let modal = this.modalCtrl.create(AutocompletePage);
     let me = this;
     modal.onDidDismiss(data => {
-      var address = data.split(',');
+      var address = data.split(', ');
       console.log(address[0]);
       console.log(address[address.length - 1]);
-      this.address.city = address[0];
-      this.address.country = address[address.length - 1];
+
+      // this.address.city = address[0];
+      // this.address.country = address[address.length - 1];
+      this.city = address[0];
+      this.country = address[address.length - 1];
+      console.log(this.city, this.country);
     });
     modal.present();
   }
-
+  setDate(data: Date){
+    this.localDate = data;
+    // console.log($event);
+    // this.day = $event.getDate();
+    // this.month = $event.getMonth();
+    // this.year = $event.getFullYear();
+    // console.log(this.day, this.month, this.year);
+  }
+  // pickdate(){
+  //     this.datePicker.show({
+  //     date: new Date(),
+  //     mode: 'date',
+  //     androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+  //   }).then(
+  //     date => console.log('Got date: ', date),
+  //     err => console.log('Error occurred while getting date: ', err)
+  //   );
+  // }
   // initAutocomplete() {
   //   console.log('enter initAutocomplete!!!!!!!!!');
   //   this.autocompleteLocality = new google.maps.places.Autocomplete(

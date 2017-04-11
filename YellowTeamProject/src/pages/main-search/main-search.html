@@ -2,6 +2,8 @@
 <!--   <button ion-button round icon-center (click)="Goback()">Log Out</button> -->
    <button ion-button round icon-center clear large (click)="Goback()"><ion-icon name="arrow-round-back"></ion-icon></button>
 
+
+
   <img src="assets/images/logo_L.png">
 
   <p id="welcome">Welcome {{username}}!</p>
@@ -10,16 +12,37 @@
     <ion-item>
       <ion-label>City</ion-label>
       <!-- <ion-input [(ngModel)]='city' name='city' placeholder="City" id="locality" type="text"></ion-input> -->
-      <ion-input (click)="showAddressModal()" [(ngModel)]="address.city" type="text" placeholder="Pick an address"></ion-input>
+      <ion-input (click)="showAddressModal()" [(ngModel)]="city" name="city" type="text" placeholder="Pick an address"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Country</ion-label>
-      <ion-input [(ngModel)]='address.country' name='country' placeholder='Country' id="country" type="text" ></ion-input>
+      <ion-input [(ngModel)]='country' name='country' placeholder='Country' id="country" type="text" ></ion-input>
     </ion-item>
-
-
+    <!-- <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-input type="date" ></ion-input>
+    </ion-item> -->
     <ion-item>
+      <ion-label>Date</ion-label>
+
+        <!-- <span ion-datepicker (ionChanged)="setDate($event);" [value]="localDate" [min]="localDate" full="true" calendar="true" clear class="ScheduleDate input">
+          <span>{{localDate | date}} <ion-icon name="clipboard" item-left ></ion-icon> </span> -->
+          <ion-input type="text" ion-datepicker (ionChanged)="setDate($event);" [value]="localDate | date:'dd-MM-yyyy'" full="true" calendar="true" clear class="ScheduleDate">
+            {{localDate | date:'dd-MM-yyyy'}}
+          </ion-input>
+
+
+          <!-- <button ion-datepicker (ionChanged)="setDate($event);" [value]="localDate" [min]="localDate" full="true" calendar="true" clear class="ScheduleDate">
+            <ion-icon name="clipboard" item-left></ion-icon>
+          </button> -->
+        <!-- </span> -->
+
+      <!-- <ion-col text-right>
+        <p>Date</p>
+      </ion-col> -->
+    </ion-item>
+    <!-- <ion-item>
       <ion-label>Date</ion-label>
 
       <ion-select [(ngModel)]="month" name='month'>
@@ -77,7 +100,7 @@
           <ion-option>2019</ion-option>
           <ion-option>2020</ion-option>
       </ion-select>
-    </ion-item>
+    </ion-item> -->
 
     <button ion-button round icon-left (click)="search()" class="center"><ion-icon name="sunny"></ion-icon>Surf</button>
 

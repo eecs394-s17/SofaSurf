@@ -12,7 +12,7 @@ import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AngularFireModule,AuthProviders,AuthMethods } from 'angularfire2';
 import { AF } from "../providers/af";
-
+import { DatePickerModule } from 'datepicker-ionic2';
 const cloudSettings : CloudSettings = {
   'core': {
     'app_id': '14e6e7d0'
@@ -44,7 +44,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig,{
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup
-    })
+    }),
+    DatePickerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
