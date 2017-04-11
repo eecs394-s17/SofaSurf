@@ -5,6 +5,8 @@ import { LoginPage } from '../login/login';
 import { Events } from 'ionic-angular';
 import {googlemaps} from 'googlemaps';
 import {AutocompletePage} from '../autocomplete/autocomplete';
+// import { DatePicker } from '@ionic-native/date-picker';
+
 @Component({
   selector: 'page-main-search',
   templateUrl: 'main-search.html'
@@ -19,13 +21,12 @@ export class MainSearchPage {
   autocompleteCountry: any;
   localityForm: any;
   countryForm: any;
-
+  localDate: any;
   constructor(public nav: NavController, public event: Events, public toast: ToastController, public modalCtrl: ModalController) {
     this.address = {
           city: '',
           country: ''
         };
-
     this.day = "1";
     this.month = "Jan";
     this.year = "2017";
@@ -40,6 +41,17 @@ export class MainSearchPage {
     this.countryForm = {
       country: 'long_name'
     };
+
+    // this.localDate = new Date();
+
+  //   this.datePicker.show({
+  //   date: new Date(),
+  //   mode: 'date',
+  //   androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+  // }).then(
+  //   date => console.log('Got date: ', date),
+  //   err => console.log('Error occurred while getting date: ', err)
+  // );
 
   }
   search(){
@@ -71,5 +83,11 @@ export class MainSearchPage {
     });
     modal.present();
   }
+
+  setDate(data: Date){
+    this.localDate = data;
+
+  }
+
 
 }
