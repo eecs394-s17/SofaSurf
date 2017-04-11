@@ -5,10 +5,10 @@ import { AF } from '../../providers/af';
 import firebase from 'firebase';
 
 @Component({
-  selector: 'page-hello-ionic',
-  templateUrl: 'hello-ionic.html',
+  selector: 'login-page',
+  templateUrl: 'login.html',
 })
-export class HelloIonicPage {
+export class LoginPage {
 
   constructor(public nav: NavController, public event: Events, public toast: ToastController, public afService: AF) {
   };

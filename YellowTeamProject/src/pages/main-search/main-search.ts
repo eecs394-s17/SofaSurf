@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ListPage } from '../list/list';
 import { NavController, ToastController, ModalController } from 'ionic-angular';
-import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import { LoginPage } from '../login/login';
 import { Events } from 'ionic-angular';
 import {googlemaps} from 'googlemaps';
 import {AutocompletePage} from '../autocomplete/autocomplete';
@@ -11,8 +11,6 @@ import {AutocompletePage} from '../autocomplete/autocomplete';
 })
 export class MainSearchPage {
   username:string;
-  city: string;
-  country: string;
   day:any;
   month:any;
   year:any;
@@ -27,8 +25,7 @@ export class MainSearchPage {
           city: '',
           country: ''
         };
-    this.city = "Evanston";
-    this.country = "US";
+
     this.day = "1";
     this.month = "Jan";
     this.year = "2017";
@@ -46,9 +43,9 @@ export class MainSearchPage {
 
   }
   search(){
-    if(this.country != ""){
+    if(this.address.country != ""){
       this.nav.push(ListPage);
-      this.event.publish('location', this.city, this.country, this.day, this.month, this.year, this.username);
+      this.event.publish('location', this.address.city, this.address.country, this.day, this.month, this.year, this.username);
     }
     else{
       let toast = this.toast.create({
@@ -66,7 +63,7 @@ export class MainSearchPage {
     let modal = this.modalCtrl.create(AutocompletePage);
     let me = this;
     modal.onDidDismiss(data => {
-      var address = data.split(',');
+      var address = data.split(', ');
       console.log(address[0]);
       console.log(address[address.length - 1]);
       this.address.city = address[0];
@@ -74,36 +71,5 @@ export class MainSearchPage {
     });
     modal.present();
   }
-
-  // initAutocomplete() {
-  //   console.log('enter initAutocomplete!!!!!!!!!');
-  //   this.autocompleteLocality = new google.maps.places.Autocomplete(
-  //       (<HTMLInputElement>document.getElementById('locality')),
-  //       {types: ['geocode']});
-  //   this.autocompleteLocality.addListener('place_changed', function(){this.fillInAddress(this.autocompleteLocality, true)});
-  //
-  //   this.autocompleteCountry = new google.maps.places.Autocomplete(
-  //       (<HTMLInputElement>document.getElementById('country')),
-  //       {types: ['geocode']});
-  //   this.autocompleteCountry.addListener('place_changed', function() {this.fillInAddress(this.autocompleteCountry, false)});
-  // }
-  //
-  // fillInAddress(autocomplete, isCity) {
-  //   console.log('enter fillInAddress!!!!!!');
-  //   var place = autocomplete.getPlace();
-  //   var componentForm;
-  //
-  //   for (var i = 0; i < place.address_components.length; i++) {
-  //     var addressType = place.address_components[i].types[0];
-  //     if (isCity) {
-  //       componentForm = this.localityForm;
-  //     } else {
-  //       componentForm = this.countryForm;
-  //     }
-  //     if (componentForm[addressType]) {
-  //       //<HTMLInputElement>document.getElementById(addressType).value = place.address_components[i][componentForm[addressType]];
-  //     }
-  //   }
-  // };
 
 }

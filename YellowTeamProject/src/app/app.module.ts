@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { LoginPage } from '../pages/login/login';
 import { MainSearchPage } from '../pages/main-search/main-search';
 import { ListPage } from '../pages/list/list';
 import { FormsModule } from '@angular/forms';
@@ -32,7 +32,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
+    LoginPage,
     MainSearchPage,
     ListPage,
     LastPage,
@@ -49,7 +49,7 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
+    LoginPage,
     MainSearchPage,
     ListPage,
     LastPage,

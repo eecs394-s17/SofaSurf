@@ -4,7 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Platform, MenuController, Nav, NavController } from 'ionic-angular';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { LastPage } from '../pages/lastpage/lastpage';
 import { MainSearchPage } from '../pages/main-search/main-search';
@@ -17,10 +17,7 @@ import { AF } from '../providers/af';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // make HelloIonicPage the root (or first) page
-  rootPage: any = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
-
+  rootPage: any = LoginPage;
   public isLoggedIn: boolean;
 
   constructor(
@@ -36,28 +33,22 @@ export class MyApp {
         if(auth == null) {
           console.log("Not Logged in.");
           this.isLoggedIn = false;
-          this.nav.push( HelloIonicPage );
+          this.nav.push( LoginPage );
         }
         else {
           console.log("Successfully Logged in.");
-          // UPDATE: I forgot this at first. Without it when a user is logged in and goes directly to /login
-          // the user did not get redirected to the home page.
           this.afService.displayName = auth.facebook.displayName;
           this.afService.email = auth.facebook.email;
           this.isLoggedIn = true;
-          
           this.nav.push( MainSearchPage );
         }
       }
     );
-    
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

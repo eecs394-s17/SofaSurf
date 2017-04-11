@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 import { Platform, Nav, NavController, Events } from 'ionic-angular';
 import { ListPage } from '../list/list';
-import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import { LoginPage } from '../login/login';
 @Component({
   selector:'LastPage',
   templateUrl: 'lastpage.html'

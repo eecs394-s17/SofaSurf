@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-
 import { NavController, NavParams, Nav } from 'ionic-angular';
 import { Events } from 'ionic-angular';
-import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import { LoginPage } from '../login/login';
 import { LastPage } from '../lastpage/lastpage';
-// import firebase from 'firebase';
-// import { AngularFireModule } from 'angularfire2';
 import { FirebaseListObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
 
@@ -13,6 +10,7 @@ import { AF } from '../../providers/af';
   selector: 'page-list',
   templateUrl: 'list.html'
 })
+
 export class ListPage {
   // username:string;
   city: string;
