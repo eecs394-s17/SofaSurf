@@ -43,18 +43,21 @@ export class MainSearchPage {
 
   }
   search(){
-    if(this.address.country != ""){
-      this.nav.push(ListPage);
-      this.event.publish('location', this.address.city, this.address.country, this.day, this.month, this.year, this.username);
-    }
-    else{
-      let toast = this.toast.create({
-        message: 'Please select correct date or location',
-        position: "middle",
-        duration: 1000
-      });
-      toast.present();
-    }
+    // if(this.address.country != ""){
+    //   this.nav.push(ListPage);
+    //   this.event.publish('location', this.address.city, this.address.country, this.day, this.month, this.year, this.username);
+    // }
+    // else{
+    //   let toast = this.toast.create({
+    //     message: 'Please select correct date or location',
+    //     position: "middle",
+    //     duration: 1000
+    //   });
+    //   toast.present();
+    // }
+    this.nav.push(ListPage);
+    this.event.publish('location', this.address.city, this.address.country, this.day, this.month, this.year, this.username);
+    
   }
   Goback(){
     this.nav.pop();

@@ -27,14 +27,18 @@ export class AF {
     this.hostList.push(hostInfo);
   }
 
-  hostsByCountry(country){
-    return this.af.database.list('users', {
-      query: {
-        orderByChild: 'Country',
-        equalTo: country
-      }
-    });
-  }
+  
+
+  hostsByCity(city){
+  return this.af.database.list('users', {
+    query: {
+      orderByChild: 'City',
+      equalTo: city
+    }
+  });
+}
+
+
 
   // hostsByLocation(city, country) {
   //   return this.af.database.list('users', [])
