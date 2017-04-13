@@ -28,4 +28,16 @@ ion-title{
 .note{
   color:grey;
 }
+a{
+  color:white;
+  display: inline-block;
+  width: 100%;
+}
+#contact{
+  position:absolute;
+  bottom:0;
+  width: 100%;
+  display: inline-block;
+  font-family:"Ionicons";
+}
 }

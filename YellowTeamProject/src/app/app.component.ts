@@ -17,7 +17,7 @@ import { AF } from '../providers/af';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = LastPage;
   public isLoggedIn: boolean;
 
   constructor(
