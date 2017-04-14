@@ -1,0 +1,34 @@
+<ion-content>
+	<form [formGroup]="userprofile" (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-label>About Me</ion-label>
+        <ion-input type="text" formControlName="aboutMe"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select formControlName="gender">
+        	<ion-option value="Not Specified">Not Specified</ion-option>
+        	<ion-option value="Female">Female</ion-option>
+			<ion-option value="Male">Male</ion-option>
+			<ion-option value="Other">Other</ion-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Phone</ion-label>
+        <ion-input type="tel" formControlName="phone"></ion-input>
+      </ion-item>
+
+<!--       <ion-item>
+        <ion-label>Location</ion-label>
+        <ion-input type="text" formControlName="location"></ion-input>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label>I can host ... </ion-label>
+        <ion-input type="number" formControlName="numBeds"></ion-input>
+      </ion-item>
+
+      <button ion-button type="submit" [disabled]="!userprofile.valid">Submit</button>
+    </form>	
+</ion-content>

@@ -5,7 +5,7 @@ import { LoginPage } from '../login/login';
 import { Events } from 'ionic-angular';
 import {googlemaps} from 'googlemaps';
 import {AutocompletePage} from '../autocomplete/autocomplete';
-// import { DatePicker } from '@ionic-native/date-picker';
+import { EditProfile } from '../editProfile/edit-profile';
 
 @Component({
   selector: 'page-main-search',
@@ -50,6 +50,10 @@ export class MainSearchPage {
       });
       toast.present();
     }
+  }
+  
+  editProfile(){
+    this.nav.push(EditProfile);
   }
 
   Goback(){
