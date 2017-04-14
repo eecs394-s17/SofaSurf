@@ -26,9 +26,7 @@ export class ListPage {
     this.event.subscribe('location', (city, country, day, month, year, username) => {
       this.city = city;
       this.country = country;
-      
-
-       this.hostList = this.afService.hostsByCity(this.city);
+      this.hostList = this.afService.hostsByCity(this.city);
     });
   }
 
@@ -42,33 +40,31 @@ export class ListPage {
   }
 
   hostsBySofaNum(sofanum){
-  this.hostList = this.afService.af.database.list('users', {
-  query: {
-    orderByChild: 'SofaNum',
-    equalTo: sofanum
+    this.hostList = this.afService.af.database.list('users', {
+      query: {
+        orderByChild: 'SofaNum',
+        equalTo: sofanum
+      }
+    });
   }
-  });
-}
 
-hostsByDegree(connectiondegree){
-  this.hostList = this.afService.af.database.list('users', {
-  query: {
-  orderByChild: 'Degree',
-  equalTo: connectiondegree
+  hostsByDegree(connectiondegree){
+    this.hostList = this.afService.af.database.list('users', {
+      query: {
+      orderByChild: 'Degree',
+      equalTo: connectiondegree
+      }
+    });
   }
-  });
-}
 
-hostsBycanHost(canhost){
-  this.hostList = this.afService.af.database.list('users', {
-  query: {
-  orderByChild: 'canHost',
-  equalTo: canhost
+  hostsBycanHost(canhost){
+    this.hostList = this.afService.af.database.list('users', {
+      query: {
+      orderByChild: 'canHost',
+      equalTo: canhost
+      }
+    });
   }
-  });
-}
-
-
 
   Goback(){
     this.nav.pop();
