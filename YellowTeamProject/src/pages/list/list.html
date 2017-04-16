@@ -11,7 +11,9 @@
   <ion-row>
     Showing search results for {{ city }}, {{ country }}.
   </ion-row>
-  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsBySofaNum(4)"><ion-icon name="arrow-round-back"></ion-icon></button>
+  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsBySofaNum()">SofaNum</button>
+  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsBySofaNum()">canHost</button>
+  <button id="gobackbut" ion-button round icon-center clear large (click)="addHost()">addhost</button>
   <ng-container *ngFor="let host of hostList | async">
     <ion-card *ngIf="host.City == city">
 

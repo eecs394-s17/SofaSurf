@@ -21,12 +21,12 @@ export class ListPage {
   // db:any;
   // hostList: Array<{name:string, city:string, country:string, email:string, canHost:any}>;
   public hostList: FirebaseListObservable<any>;
-
+  newhost:any;
   constructor(public nav: NavController, public navParams: NavParams, public event: Events, public afService: AF) {
     this.event.subscribe('location', (city, country, day, month, year, username) => {
       this.city = city;
       this.country = country;
-      this.hostList = this.afService.hostsByCity(this.city);
+      this.hostsByCountry(this.country);
     });
   }
 
@@ -39,31 +39,44 @@ export class ListPage {
     });
   }
 
-  hostsBySofaNum(sofanum){
+  hostsBySofaNum(){
     this.hostList = this.afService.af.database.list('users', {
       query: {
-        orderByChild: 'SofaNum',
-        equalTo: sofanum
+        orderByChild: 'SofaNum'
       }
     });
   }
 
-  hostsByDegree(connectiondegree){
+  hostsByDegree(){
     this.hostList = this.afService.af.database.list('users', {
       query: {
-      orderByChild: 'Degree',
-      equalTo: connectiondegree
+      orderByChild: 'Degree'
       }
     });
   }
 
-  hostsBycanHost(canhost){
+  hostsBycanHost(){
     this.hostList = this.afService.af.database.list('users', {
       query: {
       orderByChild: 'canHost',
-      equalTo: canhost
+      equalTo: true
       }
     });
+  }
+
+  addHost(){
+    for(var i = 0; i < 5; i ++){
+      this.newhost = {
+        City:'Evanston',
+        Country:'United States',
+        Degree:3,
+        Email:'test@gmail.com',
+        Name:"John Doe",
+        SofaNum:i,
+        canHost:true
+      }
+      this.afService.addHost(this.newhost);
+    }
   }
 
   Goback(){
