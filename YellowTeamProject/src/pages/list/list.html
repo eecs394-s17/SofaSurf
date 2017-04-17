@@ -11,9 +11,30 @@
   <ion-row>
     Showing search results for {{ city }}, {{ country }}.
   </ion-row>
+
   <button id="gobackbut" ion-button round icon-center clear large (click)="hostsBycanHost()">SofaNum</button>
   <button id="gobackbut" ion-button round icon-center clear large (click)="hostsBySofaNum()">canHost</button>
   <button id="gobackbut" ion-button round icon-center clear large (click)="addHost()">addhost</button>
+
+
+  <ion-item>
+  <ion-label>Number of Sofa</ion-label>
+  <ion-select [(ngModel)]="gender">
+    <ion-option (click) = "hostsBySofaNum" selected="true">Low to High</ion-option>
+    <ion-option value="m">High to Low</ion-option>
+  </ion-select>
+  </ion-item>
+
+
+
+  <ion-item>
+  <ion-label>Number of Connection</ion-label>
+  <ion-select [(ngModel)]="gender">
+    <ion-option value="f" selected="true">Low to High</ion-option>
+    <ion-option value="m">High to Low</ion-option>
+  </ion-select>
+  </ion-item>
+
   <ng-container *ngFor="let host of hostList | async">
     <ion-card *ngIf="host.City == city">
 
@@ -54,6 +75,7 @@
       <ion-row>
       <p>&emsp;</p>
       </ion-row> -->
+
 
 
     </ion-card>
