@@ -2,11 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { Platform, MenuController, Nav, NavController } from 'ionic-angular';
+import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { LoginPage } from '../pages/login/login';
-import { ListPage } from '../pages/list/list';
-import { LastPage } from '../pages/lastpage/lastpage';
 import { MainSearchPage } from '../pages/main-search/main-search';
 
 import { AF } from '../providers/af';

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ListPage } from '../list/list';
 import { NavController, ToastController, ModalController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 import { Events } from 'ionic-angular';
-import {googlemaps} from 'googlemaps';
 import {AutocompletePage} from '../autocomplete/autocomplete';
 import { EditProfile } from '../editProfile/edit-profile';
 import { AF } from '../../providers/af';

@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
 import { ToastController } from 'ionic-angular';
-import { Platform, Nav, NavController, Events } from 'ionic-angular';
-import { ListPage } from '../list/list';
-import { LoginPage } from '../login/login';
+import { NavController, Events } from 'ionic-angular';
 @Component({
   selector:'LastPage',
   templateUrl: 'lastpage.html'

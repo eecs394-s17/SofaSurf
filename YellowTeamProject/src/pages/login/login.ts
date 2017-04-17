@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MainSearchPage } from '../main-search/main-search';
 import { NavController, Events, ToastController } from 'ionic-angular';
 import { AF } from '../../providers/af';
-import firebase from 'firebase';
 
 @Component({
   selector: 'login-page',

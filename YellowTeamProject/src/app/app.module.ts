@@ -4,7 +4,6 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { MainSearchPage } from '../pages/main-search/main-search';
 import { ListPage } from '../pages/list/list';
-import { FormsModule } from '@angular/forms';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LastPage } from '../pages/lastpage/lastpage';
@@ -13,7 +12,6 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AngularFireModule,AuthProviders,AuthMethods } from 'angularfire2';
 import { AF } from "../providers/af";
 import { DatePickerModule } from 'datepicker-ionic2';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { EditProfile } from '../pages/editProfile/edit-profile';
 const cloudSettings : CloudSettings = {

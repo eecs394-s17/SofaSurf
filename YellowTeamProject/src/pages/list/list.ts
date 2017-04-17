@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Nav } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Events } from 'ionic-angular';
-import { LoginPage } from '../login/login';
-import { LastPage } from '../lastpage/lastpage';
 import { FirebaseListObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
 
