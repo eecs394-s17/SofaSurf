@@ -1,0 +1,40 @@
+<ion-content>
+  <button ion-button round icon-center clear large (click)="Goback()"><ion-icon name="arrow-round-back"></ion-icon></button>
+
+	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
+      <ion-item>
+        <ion-label>About Me</ion-label>
+        <ion-input type="text" formControlName="aboutMe"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select formControlName="gender">
+        	<ion-option value="Not Specified">Not Specified</ion-option>
+        	<ion-option value="Female">Female</ion-option>
+			<ion-option value="Male">Male</ion-option>
+			<ion-option value="Other">Other</ion-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>City</ion-label>
+        <ion-input (click)="showAddressModal()" formControlName="city" type="text" placeholder="Pick an address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Country</ion-label>
+        <ion-input (click)="showAddressModal()" formControlName="country" type="text" placeholder="Pick an address"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Phone</ion-label>
+        <ion-input type="tel" formControlName="phone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>I can host ... </ion-label>
+        <ion-input type="number" formControlName="numBeds"></ion-input>
+      </ion-item>
+
+      <button ion-button type="submit" [disabled]="!userProfile.valid">Submit</button>
+    </form>	
+</ion-content>

@@ -3,7 +3,7 @@
 
   <img src="assets/images/logo_L.png">
 
-  <p id="welcome">Welcome {{username}}!</p>
+  <p id="welcome">Welcome {{afService.displayName}}!</p>
   <ion-list>
 
     <ion-item>
@@ -15,7 +15,23 @@
       <ion-label>Country</ion-label>
       <ion-input [(ngModel)]='address.country' name='country' placeholder='Country' id="country" type="text" ></ion-input>
     </ion-item>
+    <ion-item>
+      Date
+      <button ion-datepicker (ionChanged)="setStartDate($event);" [value]="localStartDate" full="true" calendar="true" clear class="ScheduleDate">
+        <span *ngIf="!localStartDate">Start Date</span>
+        {{localStartDate | date:"shortDate"}}
+      </button>
+
+      <button ion-datepicker (ionChanged)="setEndDate($event);" [value]="localEndDate" full="true" calendar="true" clear class="ScheduleDate">
+        <span *ngIf="!localEndDate">End Date</span>
+        {{localEndDate | date:"shortDate"}}
+      </button>
+    </ion-item>
 
     <button ion-button round icon-left (click)="search()" class="center"><ion-icon name="sunny"></ion-icon>Surf</button>
+
   </ion-list>
+  <button (click)="editProfile()">Edit Profile</button>
 </ion-content>
+
+    

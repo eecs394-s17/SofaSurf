@@ -14,9 +14,9 @@ export class LoginPage {
   };
 
   login() {
-    this.afService.loginWithFacebook().then((data) => {
-      this.nav.push(MainSearchPage);
-    })
+    this.afService.loginWithFacebook().then(
+      _ => this.nav.push(MainSearchPage)
+    );
   }
 
   logout() {

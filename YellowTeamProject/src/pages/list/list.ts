@@ -23,7 +23,7 @@ export class ListPage {
   public hostList: FirebaseListObservable<any>;
   newhost:any;
   constructor(public nav: NavController, public navParams: NavParams, public event: Events, public afService: AF) {
-    this.event.subscribe('location', (city, country, day, month, year, username) => {
+    this.event.subscribe('location', (city, country, startDate, endDate, username) => {
       this.city = city;
       this.country = country;
       this.hostsByCountry(this.country);

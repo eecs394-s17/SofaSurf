@@ -12,7 +12,10 @@ import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AngularFireModule,AuthProviders,AuthMethods } from 'angularfire2';
 import { AF } from "../providers/af";
+import { DatePickerModule } from 'datepicker-ionic2';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { EditProfile } from '../pages/editProfile/edit-profile';
 const cloudSettings : CloudSettings = {
   'core': {
     'app_id': '14e6e7d0'
@@ -29,6 +32,7 @@ export const firebaseConfig = {
 };
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -36,7 +40,8 @@ export const firebaseConfig = {
     MainSearchPage,
     ListPage,
     LastPage,
-    AutocompletePage
+    AutocompletePage,
+    EditProfile
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -44,7 +49,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig,{
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup
-    })
+    }),
+    DatePickerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,7 +59,8 @@ export const firebaseConfig = {
     MainSearchPage,
     ListPage,
     LastPage,
-    AutocompletePage
+    AutocompletePage,
+    EditProfile
   ],
   providers: [
     StatusBar,

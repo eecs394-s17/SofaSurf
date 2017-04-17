@@ -30,15 +30,13 @@ export class MyApp {
 
     this.afService.af.auth.subscribe(
       (auth) => {
-        if(auth == null) {
+        if(auth == null || this.afService.userId == null) {
           console.log("Not Logged in.");
           this.isLoggedIn = false;
           this.nav.push( LoginPage );
         }
         else {
           console.log("Successfully Logged in.");
-          this.afService.displayName = auth.facebook.displayName;
-          this.afService.email = auth.facebook.email;
           this.isLoggedIn = true;
           this.nav.push( MainSearchPage );
         }
