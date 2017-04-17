@@ -12,7 +12,7 @@ import { AF } from '../../providers/af';
 })
 
 export class ListPage {
-  // username:string;
+  //username:string;
   city: string;
   country: string;
   // day:any;
