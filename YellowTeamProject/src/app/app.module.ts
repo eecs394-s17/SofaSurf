@@ -20,12 +20,12 @@ const cloudSettings : CloudSettings = {
 };
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyD3cLDMHMx5L92kWzgXA1ThCkrIEzuksKo",
-  authDomain: "test-d85aa.firebaseapp.com",
-  databaseURL: "https://test-d85aa.firebaseio.com",
-  projectId: "test-d85aa",
-  storageBucket: "test-d85aa.appspot.com",
-  messagingSenderId: "264129880167"
+  apiKey: "AIzaSyDCUt0-01e297EZyGx6QOMGkzevYwMDH1w",
+  authDomain: "sofasurf-3848c.firebaseapp.com",
+  databaseURL: "https://sofasurf-3848c.firebaseio.com",
+  projectId: "sofasurf-3848c",
+  storageBucket: "",
+  messagingSenderId: "75660741480"
 };
 
 
