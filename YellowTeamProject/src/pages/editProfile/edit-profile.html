@@ -1,5 +1,7 @@
 <ion-content>
-	<form [formGroup]="userprofile" (ngSubmit)="logForm()">
+  <button ion-button round icon-center clear large (click)="Goback()"><ion-icon name="arrow-round-back"></ion-icon></button>
+
+	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
       <ion-item>
         <ion-label>About Me</ion-label>
         <ion-input type="text" formControlName="aboutMe"></ion-input>
@@ -15,20 +17,24 @@
       </ion-item>
       
       <ion-item>
+        <ion-label>City</ion-label>
+        <ion-input (click)="showAddressModal()" formControlName="city" type="text" placeholder="Pick an address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Country</ion-label>
+        <ion-input (click)="showAddressModal()" formControlName="country" type="text" placeholder="Pick an address"></ion-input>
+      </ion-item>
+
+      <ion-item>
         <ion-label>Phone</ion-label>
         <ion-input type="tel" formControlName="phone"></ion-input>
       </ion-item>
-
-<!--       <ion-item>
-        <ion-label>Location</ion-label>
-        <ion-input type="text" formControlName="location"></ion-input>
-      </ion-item> -->
 
       <ion-item>
         <ion-label>I can host ... </ion-label>
         <ion-input type="number" formControlName="numBeds"></ion-input>
       </ion-item>
 
-      <button ion-button type="submit" [disabled]="!userprofile.valid">Submit</button>
+      <button ion-button type="submit" [disabled]="!userProfile.valid">Submit</button>
     </form>	
 </ion-content>

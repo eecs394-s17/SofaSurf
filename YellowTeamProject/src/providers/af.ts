@@ -6,7 +6,7 @@ export class AF {
   public hostList: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   public displayName: string;
-  public email: string;
+  public userId: string;
 
   constructor(public af: AngularFire) {
     this.hostList = this.af.database.list('users');
@@ -16,6 +16,10 @@ export class AF {
     return this.af.auth.login({
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup,
+    }).then((data) => {
+      console.log(data);
+      this.userId = data.uid;
+      this.displayName = data.auth.displayName;
     });
   }
 
@@ -34,6 +38,11 @@ export class AF {
         equalTo: country
       }
     });
+  }
+
+  getUserProfile(userId){
+    console.log('retrieving user profile for ' + userId);
+    return this.af.database.object('users/' + userId);
   }
 
   // hostsByLocation(city, country) {

@@ -6,6 +6,8 @@ import { Events } from 'ionic-angular';
 import {googlemaps} from 'googlemaps';
 import {AutocompletePage} from '../autocomplete/autocomplete';
 import { EditProfile } from '../editProfile/edit-profile';
+import { AF } from '../../providers/af';
+
 
 @Component({
   selector: 'page-main-search',
@@ -14,27 +16,20 @@ import { EditProfile } from '../editProfile/edit-profile';
 export class MainSearchPage {
   address: any;
 
-  autocompleteLocality: any;
-  autocompleteCountry: any;
-  localityForm: any;
-  countryForm: any;
-
   localStartDate: any;
   localEndDate: any;
 
-  constructor(public nav: NavController, public event: Events, public toast: ToastController, public modalCtrl: ModalController) {
+  constructor(
+    public nav: NavController,
+    public event: Events,
+    public toast: ToastController,
+    public modalCtrl: ModalController,
+    public afService: AF
+    ) {
     this.address = {
           city: '',
           country: ''
         };
-
-    this.localityForm = {
-      locality: 'long_name',
-      country: 'long_name'
-    };
-    this.countryForm = {
-      country: 'long_name'
-    };
 
   }
   search(){
@@ -62,7 +57,6 @@ export class MainSearchPage {
 
   showAddressModal () {
     let modal = this.modalCtrl.create(AutocompletePage);
-    let me = this;
     modal.onDidDismiss(data => {
       var address = data.split(', ');
       console.log(address[0]);
