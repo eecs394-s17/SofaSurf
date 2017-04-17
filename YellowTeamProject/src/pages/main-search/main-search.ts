@@ -46,7 +46,7 @@ export class MainSearchPage {
       toast.present();
     }
   }
-  
+
   editProfile(){
     this.nav.push(EditProfile);
   }

@@ -31,11 +31,13 @@ export class AF {
     this.hostList.push(hostInfo);
   }
 
-  hostsByCountry(country){
+
+
+  hostsByCity(city){
     return this.af.database.list('users', {
       query: {
-        orderByChild: 'Country',
-        equalTo: country
+        orderByChild: 'City',
+        equalTo: city
       }
     });
   }
@@ -45,8 +47,5 @@ export class AF {
     return this.af.database.object('users/' + userId);
   }
 
-  // hostsByLocation(city, country) {
-  //   return this.af.database.list('users', [])
-  // }
 
 }
