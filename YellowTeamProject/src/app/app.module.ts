@@ -12,8 +12,9 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AngularFireModule,AuthProviders,AuthMethods } from 'angularfire2';
 import { AF } from "../providers/af";
 import { DatePickerModule } from 'datepicker-ionic2';
-
 import { EditProfile } from '../pages/editProfile/edit-profile';
+import { ProfilePage } from '../pages/profile/profile';
+
 const cloudSettings : CloudSettings = {
   'core': {
     'app_id': '14e6e7d0'
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     ListPage,
     LastPage,
     AutocompletePage,
-    EditProfile
+    EditProfile,
+    ProfilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -58,7 +60,8 @@ export const firebaseConfig = {
     ListPage,
     LastPage,
     AutocompletePage,
-    EditProfile
+    EditProfile,
+    ProfilePage
   ],
   providers: [
     StatusBar,

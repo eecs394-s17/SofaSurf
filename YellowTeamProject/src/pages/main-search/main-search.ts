@@ -4,6 +4,7 @@ import { NavController, ToastController, ModalController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import {AutocompletePage} from '../autocomplete/autocomplete';
 import { EditProfile } from '../editProfile/edit-profile';
+import { ProfilePage } from '../profile/profile';
 import { AF } from '../../providers/af';
 
 
@@ -47,6 +48,9 @@ export class MainSearchPage {
 
   editProfile(){
     this.nav.push(EditProfile);
+  }
+  goToProfile(){
+    this.nav.push(ProfilePage);
   }
 
   Goback(){

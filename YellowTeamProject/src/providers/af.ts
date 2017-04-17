@@ -7,6 +7,7 @@ export class AF {
   public users: FirebaseListObservable<any>;
   public displayName: string;
   public userId: string;
+  public photoURL: string;
 
   constructor(public af: AngularFire) {
     this.hostList = this.af.database.list('users');
@@ -20,6 +21,7 @@ export class AF {
       console.log(data);
       this.userId = data.uid;
       this.displayName = data.auth.displayName;
+      this.photoURL = data.auth.photoURL;
     });
   }
 
