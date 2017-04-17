@@ -27,6 +27,7 @@ export class ListPage {
       this.city = city;
       this.country = country;
       this.hostsByCountry(this.country);
+      console.log(this.hostList);
     });
   }
 
