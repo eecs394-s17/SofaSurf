@@ -64,7 +64,7 @@ export class EditProfile{
       canHost: this.userProfile.value.canHost,
       numBeds: this.userProfile.value.numBeds
     }).then(
-      _ => console.log(this.currentProfile)
+      _ => this.nav.pop()
     );
   }
 
@@ -72,9 +72,8 @@ export class EditProfile{
     let modal = this.modalCtrl.create(AutocompletePage);
     modal.onDidDismiss(data => {
       if (data) {
-        var address = data.split(', ');
-        this.userProfile.patchValue({'city':address[0]});
-        this.userProfile.patchValue({'country':address[address.length - 1]});
+        this.userProfile.patchValue({'city':data.city});
+        this.userProfile.patchValue({'country':data.country});
       }
     });
     modal.present();

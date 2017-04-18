@@ -50,11 +50,8 @@ export class MainSearchPage {
     let modal = this.modalCtrl.create(AutocompletePage);
     modal.onDidDismiss(data => {
       if(data){
-        var address = data.split(', ');
-        console.log(address[0]);
-        console.log(address[address.length - 1]);
-        this.address.city = address[0];
-        this.address.country = address[address.length - 1];
+        this.address.city = data.city;
+        this.address.country = data.country;
       }
     });
     modal.present();

@@ -32,11 +32,17 @@ export class AutocompletePage {
       return;
     }
     let me = this;
-    this.service.getPlacePredictions({ input: this.autocomplete.query }, function (predictions, status) {
+    this.service.getPlacePredictions({
+      input: this.autocomplete.query,
+      types: ['(cities)']
+    }, function (predictions, status) {
       me.autocompleteItems = [];
       me.zone.run(function () {
         predictions.forEach(function (prediction) {
-          me.autocompleteItems.push(prediction.description);
+          me.autocompleteItems.push({
+            city: prediction.terms[0].value,
+            country: prediction.terms[prediction.terms.length -1].value
+          });
         });
       });
     });
