@@ -15,6 +15,8 @@ import { AF } from '../providers/af';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  pages: Array<{title: string, component: any}>;
+
   rootPage: any = LoginPage;
   public isLoggedIn: boolean;
 
@@ -41,7 +43,11 @@ export class MyApp {
       }
     );
     this.initializeApp();
-  }
+
+    this.pages = [
+    { title: 'MainSearch', component: MainSearchPage},
+    { title: 'LoginPage', component: LoginPage}]
+  };
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -49,4 +55,10 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
+
+  openPage(page) {
+
+    this.nav.setRoot(page.component);
+  }
+ 
 }

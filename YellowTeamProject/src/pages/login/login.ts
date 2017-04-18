@@ -22,6 +22,8 @@ export class LoginPage {
     this.afService.logout();
   }
 
+
+
   // add(){
   //   let newUserRef = this.db.ref('/users').push();
   //   newUserRef.set({
