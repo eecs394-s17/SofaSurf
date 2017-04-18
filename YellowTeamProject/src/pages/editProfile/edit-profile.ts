@@ -61,12 +61,15 @@ export class EditProfile{
   showAddressModal () {
     let modal = this.modalCtrl.create(AutocompletePage);
     modal.onDidDismiss(data => {
-      var address = data.split(', ');
-      this.userProfile.patchValue({'city':address[0]});
-      this.userProfile.patchValue({'country':address[address.length - 1]});
+      if (data) {
+        var address = data.split(', ');
+        this.userProfile.patchValue({'city':address[0]});
+        this.userProfile.patchValue({'country':address[address.length - 1]});
+      }
     });
     modal.present();
   }
+
 
 
   Goback(){
