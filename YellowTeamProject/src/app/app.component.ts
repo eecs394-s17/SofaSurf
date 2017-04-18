@@ -8,7 +8,7 @@ import { AF } from '../providers/af';
 
 import { LoginPage } from '../pages/login/login';
 import { MainSearchPage } from '../pages/main-search/main-search';
-import { EditProfile } from '../pages/editProfile/edit-profile';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -45,7 +45,7 @@ export class MyApp {
 
     this.pages = [
       { title: 'Search', component: MainSearchPage},
-      { title: 'Edit My Profile', component: EditProfile }
+      { title: 'My Profile', component: ProfilePage }
     ]
   };
 

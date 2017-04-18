@@ -1,13 +1,18 @@
-<ion-content>
-  <button ion-button round icon-center clear large (click)="Goback()"><ion-icon name="arrow-round-back"></ion-icon></button>
-  
-    <img src= "{{ afService.photoURL }}">
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+</ion-header>
 
-
-      <h1> {{afService.displayName}} </h1>
-      <p>
-        Björk first came to prominence as one of the lead vocalists of the avant pop Icelandic sextet the Sugarcubes, but when...
-      </p>
+<ion-content padding>
+    <img [src]= "(currentProfile | async)?.displayImage">
+    <h1>{{(currentProfile | async)?.name}}</h1>
+    <p>
+      {{(currentProfile | async)?.aboutMe}}
+    </p>
 
 
     <ion-item>

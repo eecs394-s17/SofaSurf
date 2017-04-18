@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ToastController } from 'ionic-angular';
-import { NavController, Events } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { AF } from '../../providers/af';
+import { FirebaseObjectObservable } from 'angularfire2';
 
 @Component({
   selector:'ProfilePage',
@@ -9,14 +9,13 @@ import { AF } from '../../providers/af';
 })
 export class ProfilePage {
   
-  constructor(
-    public toastCtrl: ToastController,
-    public nav: NavController,
-    public event: Events,
-    public afService: AF
-  ){};
+  public currentProfile: FirebaseObjectObservable<any>;
 
-  Goback(){
-    this.nav.pop();
-  }
+  constructor(
+    public nav: NavController,
+    public afService: AF
+  ){
+    this.currentProfile = this.afService.getUserProfile(this.afService.userId);
+  };
+
 }
