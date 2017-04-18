@@ -24,35 +24,45 @@ export class EditProfile{
     ) {
 
     this.userProfile = this.formBuilder.group({
-      aboutMe: ['', Validators.required],
+      name: [''],
       gender: [''],
-      phone: [''],
-      numBeds: [''],
       city: [''],
-      country: ['']
+      country: [''],
+      aboutMe: [''],
+      email: [''],
+      phone: [''],
+      canHost: [''],
+      numBeds: ['']
     });
 
     this.currentProfile = this.afService.getUserProfile(this.afService.userId);
     this.currentProfile.subscribe(snapshot => {
+      console.log(snapshot);
       this.userProfile.patchValue({
-        'aboutMe':  snapshot.aboutMe,
+        'name': snapshot.name,
         'gender': snapshot.gender,
-        'phone': snapshot.phone,
-        'numBeds': snapshot.numBeds,
         'city': snapshot.city,
-        'country': snapshot.country
+        'country': snapshot.country,
+        'aboutMe':  snapshot.aboutMe,
+        'email': snapshot.email,
+        'phone': snapshot.phone,
+        'canHost': snapshot.canHost,
+        'numBeds': snapshot.numBeds
       });
     });
   }
 
   updateUser() {
     this.currentProfile.update({
-      aboutMe: this.userProfile.value.aboutMe,
+      name: this.userProfile.value.name,
       gender: this.userProfile.value.gender,
-      phone: this.userProfile.value.phone,
-      numBeds: this.userProfile.value.numBeds,
       city: this.userProfile.value.city,
-      country: this.userProfile.value.country
+      country: this.userProfile.value.country,
+      aboutMe: this.userProfile.value.aboutMe,
+      email: this.userProfile.value.email,
+      phone: this.userProfile.value.phone,
+      canHost: this.userProfile.value.canHost,
+      numBeds: this.userProfile.value.numBeds
     }).then(
       _ => console.log(this.currentProfile)
     );
@@ -68,12 +78,6 @@ export class EditProfile{
       }
     });
     modal.present();
-  }
-
-
-
-  Goback(){
-    this.nav.pop();
   }
 }
 

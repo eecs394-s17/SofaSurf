@@ -6,40 +6,61 @@
     <ion-title>Edit Profile</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
 	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
       <ion-item>
-        <ion-label>About Me</ion-label>
-        <ion-input type="text" formControlName="aboutMe"></ion-input>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label>Gender</ion-label>
+        <ion-label floating>Gender</ion-label>
         <ion-select formControlName="gender">
-        	<ion-option value="Not Specified">Not Specified</ion-option>
-        	<ion-option value="Female">Female</ion-option>
-			<ion-option value="Male">Male</ion-option>
-			<ion-option value="Other">Other</ion-option>
+          <ion-option value="Not Specified">Not Specified</ion-option>
+          <ion-option value="Female">Female</ion-option>
+          <ion-option value="Male">Male</ion-option>
+          <ion-option value="Other">Other</ion-option>
         </ion-select>
       </ion-item>
-      
+
       <ion-item>
-        <ion-label>City</ion-label>
+        <ion-label floating>City</ion-label>
         <ion-input (click)="showAddressModal()" formControlName="city" type="text" placeholder="Pick an address"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Country</ion-label>
+        <ion-label floating>Country</ion-label>
         <ion-input (click)="showAddressModal()" formControlName="country" type="text" placeholder="Pick an address"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Phone</ion-label>
+        <ion-label floating>About Me</ion-label>
+        <ion-textarea formControlName="aboutMe"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Phone</ion-label>
         <ion-input type="tel" formControlName="phone"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>I can host ... </ion-label>
-        <ion-input type="number" formControlName="numBeds"></ion-input>
+        <ion-label floating>Would you like to host?</ion-label>
+        <ion-select formControlName="canHost">
+          <ion-option value=true>Yessir!</ion-option>
+          <ion-option value=false>No, I'd rather not host.</ion-option>
+        </ion-select>
       </ion-item>
+
+      <ion-item>
+        <ion-label floating>I can host up to # people at once</ion-label>
+        <ion-input type="number" formControlName="numBeds"></ion-input>
+      </ion-item>  
+
 
       <button ion-button type="submit" [disabled]="!userProfile.valid">Submit</button>
     </form>	

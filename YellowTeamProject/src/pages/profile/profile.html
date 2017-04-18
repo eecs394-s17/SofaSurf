@@ -34,16 +34,20 @@
     </ion-card-content>
     <ion-row>
       <ion-col [hidden]="!(currentProfile | async)?.email">
-        <button ion-button icon-left block>
-          <ion-icon name="mail"></ion-icon>
-          Email
-        </button>
+        <a [attr.href]="'mailto:' + (currentProfile | async)?.email">
+          <button ion-button icon-left block>
+            <ion-icon name="mail"></ion-icon>
+            Email
+          </button>
+        </a>
       </ion-col>
       <ion-col [hidden]="!(currentProfile | async)?.phone">
-        <button ion-button icon-left block>
-          <ion-icon name="call"></ion-icon>
-          Call
-        </button>
+        <a [attr.href]="'sms://' + (currentProfile | async)?.phone">
+          <button ion-button icon-left block>
+            <ion-icon name="call"></ion-icon>
+            Text
+          </button>
+        </a>
       </ion-col>
     </ion-row>
   </ion-list>
