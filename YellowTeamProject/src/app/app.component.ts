@@ -42,11 +42,6 @@ export class MyApp {
     });
 
     this.initializeApp();
-
-    this.pages = [
-      { title: 'Search', component: MainSearchPage},
-      { title: 'My Profile', component: ProfilePage }
-    ]
   };
 
   initializeApp() {
@@ -56,8 +51,12 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    this.nav.setRoot(page.component);
+  openSearchPage() {
+    this.nav.setRoot(MainSearchPage);
+  }
+
+  openMyProfile() {
+    this.nav.setRoot(ProfilePage, {userId: this.afService.userId});
   }
  
   logout() {

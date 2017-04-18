@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
-import { HostProfilePage } from '../hostProfilePage/host-profile-page'
+import { ProfilePage } from '../profile/profile'
 
 @Component({
   selector: 'page-list',
@@ -55,7 +55,7 @@ export class ListPage {
   }
 
   viewHost(hostIdVal){
-    this.nav.push(HostProfilePage, {hostId: hostIdVal});
+    this.nav.push(ProfilePage, {userId: hostIdVal});
   }
 
 }

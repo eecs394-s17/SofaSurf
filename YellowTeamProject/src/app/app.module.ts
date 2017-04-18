@@ -12,7 +12,6 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { MainSearchPage } from '../pages/main-search/main-search';
 import { ListPage } from '../pages/list/list';
-import { HostProfilePage } from '../pages/hostProfilePage/host-profile-page';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { EditProfile } from '../pages/editProfile/edit-profile';
 import { ProfilePage } from '../pages/profile/profile';
@@ -40,7 +39,6 @@ export const firebaseConfig = {
     LoginPage,
     MainSearchPage,
     ListPage,
-    HostProfilePage,
     AutocompletePage,
     EditProfile,
     ProfilePage
@@ -61,7 +59,6 @@ export const firebaseConfig = {
     LoginPage,
     MainSearchPage,
     ListPage,
-    HostProfilePage,
     AutocompletePage,
     EditProfile,
     ProfilePage

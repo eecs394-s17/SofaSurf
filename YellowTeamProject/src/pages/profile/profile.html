@@ -3,30 +3,49 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>My Profile</ion-title>
+    <ion-title *ngIf="isMyProfile">My Profile</ion-title>
+    <ion-title *ngIf="!isMyProfile">{{(currentProfile | async)?.name}}'s Profile</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <img [src]= "(currentProfile | async)?.displayImage">
-    <h1>{{(currentProfile | async)?.name}}</h1>
-    <p>
-      {{(currentProfile | async)?.aboutMe}}
-    </p>
 
+  <ion-fab top right *ngIf="isMyProfile">
+    <button ion-fab mini (click)="editProfile()"><ion-icon name="md-create"></ion-icon></button>
+  </ion-fab>
 
+  <ion-slides pager>
+    <ion-slide *ngFor="let sofaImg of (currentProfile | async)?.sofaImages">
+      <img [src]="sofaImg">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-list no-lines>
     <ion-item>
-      <ion-icon name='musical-notes' item-left style="color: #d03e84"></ion-icon>
-      Albums
-      <ion-badge item-right>9</ion-badge>
+      <ion-thumbnail item-left>
+        <img [src]= "(currentProfile | async)?.displayImage">
+      </ion-thumbnail>
+      <h2>{{(currentProfile | async)?.name}}</h2>
+      <p>{{(currentProfile | async)?.city}} • {{(currentProfile | async)?.country}}</p>
+      <p>You share 20 friends-of-friends</p>
     </ion-item>
-
-    <ion-item>
-      <ion-icon name='logo-twitter' item-left style="color: #55acee"></ion-icon>
-      Followers
-      <ion-badge item-right>260k</ion-badge>
-    </ion-item>
-
-  
+    <ion-card-content>
+      <p>{{(currentProfile | async)?.aboutMe}}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col [hidden]="!(currentProfile | async)?.email">
+        <button ion-button icon-left block>
+          <ion-icon name="mail"></ion-icon>
+          Email
+        </button>
+      </ion-col>
+      <ion-col [hidden]="!(currentProfile | async)?.phone">
+        <button ion-button icon-left block>
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
 
 </ion-content>
