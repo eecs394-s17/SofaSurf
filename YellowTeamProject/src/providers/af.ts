@@ -33,6 +33,7 @@ export class AF {
       this.userId = data.uid;
       this.displayName = data.auth.displayName;
       this.photoURL = data.auth.photoURL;
+      this.checkNewUser(data);
       return this.storage.ready();
     }).then(_=>{
       this.storage.set('loggedInUserId', this.userId);
@@ -66,5 +67,19 @@ export class AF {
     return this.af.database.object('users/' + userId);
   }
 
+  checkNewUser(data){
+    console.log('checking new user');
+    this.af.database.object('users/' + data.uid)
+    .subscribe((obj)=>{
+      if (!obj.$exists()) {
+        console.log(data);
+        obj.update({
+          name: data.auth.displayName,
+          email: data.auth.email,
+          photoURL: data.auth.photoURL
+        });
+      };
+    });
+  }
 
 }
