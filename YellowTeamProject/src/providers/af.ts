@@ -69,11 +69,10 @@ export class AF {
 
   checkNewUser(data){
     console.log('checking new user');
-    this.af.database.object('users/' + data.uid)
-    .subscribe((obj)=>{
+    let userProfile = this.af.database.object('users/' + data.uid);
+    userProfile.subscribe((obj)=>{
       if (!obj.$exists()) {
-        console.log(data);
-        obj.update({
+        userProfile.update({
           name: data.auth.displayName,
           email: data.auth.email,
           photoURL: data.auth.photoURL
