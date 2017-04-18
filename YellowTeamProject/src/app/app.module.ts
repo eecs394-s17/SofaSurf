@@ -15,6 +15,7 @@ import { ListPage } from '../pages/list/list';
 import { HostProfilePage } from '../pages/hostProfilePage/host-profile-page';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { EditProfile } from '../pages/editProfile/edit-profile';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { AF } from "../providers/af";
 
@@ -41,7 +42,8 @@ export const firebaseConfig = {
     ListPage,
     HostProfilePage,
     AutocompletePage,
-    EditProfile
+    EditProfile,
+    ProfilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -61,7 +63,8 @@ export const firebaseConfig = {
     ListPage,
     HostProfilePage,
     AutocompletePage,
-    EditProfile
+    EditProfile,
+    ProfilePage
   ],
   providers: [
     StatusBar,

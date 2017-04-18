@@ -32,6 +32,7 @@ export class MyApp {
       if (auth == null) {
         this.nav.setRoot(LoginPage);
       } else {
+        // TODO: add photoURL to below test if needed
         if (this.afService.userId && this.afService.displayName){
           this.nav.setRoot(MainSearchPage);
         } else {

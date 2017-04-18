@@ -46,10 +46,6 @@ export class MainSearchPage {
     }
   }
 
-  Goback(){
-    this.nav.pop();
-  }
-
   showAddressModal () {
     let modal = this.modalCtrl.create(AutocompletePage);
     modal.onDidDismiss(data => {

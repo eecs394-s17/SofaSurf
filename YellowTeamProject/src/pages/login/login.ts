@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MainSearchPage } from '../main-search/main-search';
-import { NavController, Events, ToastController } from 'ionic-angular';
 import { AF } from '../../providers/af';
 
 @Component({
@@ -9,23 +7,10 @@ import { AF } from '../../providers/af';
 })
 export class LoginPage {
 
-  constructor(public nav: NavController, public event: Events, public toast: ToastController, public afService: AF) {
+  constructor(public afService: AF) {
   };
 
   login() {
     this.afService.loginWithFacebook();
   }
-
-
-  // add(){
-  //   let newUserRef = this.db.ref('/users').push();
-  //   newUserRef.set({
-  //     Name : 'Alex Wang',
-  //     Email : '456@gmail.com',
-  //     Country:'US',
-  //     City:'Chicago',
-  //     canHost:true
-  //   });
-  // }
-
 }

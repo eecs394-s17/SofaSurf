@@ -8,6 +8,7 @@ export class AF {
   public users: FirebaseListObservable<any>;
   public displayName: string;
   public userId: string;
+  public photoURL: string;
 
   constructor(public af: AngularFire, public storage: Storage) {
     this.hostList = this.af.database.list('users');
@@ -17,6 +18,9 @@ export class AF {
       );
       this.storage.get('loggedInUserDisplayName').then((val)=>
         this.displayName = val
+      );
+      this.storage.get('loggedInUserPhotoURL').then((val)=>
+        this.photoURL = val
       );
     });
   }
@@ -28,10 +32,12 @@ export class AF {
     }).then((data) => {
       this.userId = data.uid;
       this.displayName = data.auth.displayName;
+      this.photoURL = data.auth.photoURL;
       return this.storage.ready();
     }).then(_=>{
       this.storage.set('loggedInUserId', this.userId);
       this.storage.set('loggedInUserDisplayName', this.displayName);
+      this.storage.set('loggedInUserPhotoURL', this.photoURL);
       return Promise.resolve();
     });
   }
@@ -41,6 +47,7 @@ export class AF {
       this.storage.ready().then(_=>{
         this.storage.remove('loggedInUserId');
         this.storage.remove('loggedInUserDisplayName');
+        this.storage.remove('loggedInUserPhotoURL');
       });
     });
   }
