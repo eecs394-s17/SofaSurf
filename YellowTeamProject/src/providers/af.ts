@@ -11,6 +11,14 @@ export class AF {
 
   constructor(public af: AngularFire, public storage: Storage) {
     this.hostList = this.af.database.list('users');
+    this.storage.ready().then(_=>{
+      this.storage.get('loggedInUserId').then((val)=>
+        this.userId = val
+      );
+      this.storage.get('loggedInUserDisplayName').then((val)=>
+        this.displayName = val
+      );
+    });
   }
 
   loginWithFacebook() {
@@ -20,15 +28,21 @@ export class AF {
     }).then((data) => {
       this.userId = data.uid;
       this.displayName = data.auth.displayName;
-      this.storage.ready().then(() => {
-        this.storage.set('loggedInUserId', this.userId);
-        this.storage.set('loggedInUserDisplayName', this.displayName);
-      })
+      return this.storage.ready();
+    }).then(_=>{
+      this.storage.set('loggedInUserId', this.userId);
+      this.storage.set('loggedInUserDisplayName', this.displayName);
+      return Promise.resolve();
     });
   }
 
   logout() {
-    return this.af.auth.logout();
+    return this.af.auth.logout().then(_=>{
+      this.storage.ready().then(_=>{
+        this.storage.remove('loggedInUserId');
+        this.storage.remove('loggedInUserDisplayName');
+      });
+    });
   }
 
   hostsByCity(city){

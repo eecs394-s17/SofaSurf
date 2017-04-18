@@ -13,15 +13,8 @@ export class LoginPage {
   };
 
   login() {
-    this.afService.loginWithFacebook().then(
-      _ => this.nav.setRoot(MainSearchPage)
-    );
+    this.afService.loginWithFacebook();
   }
-
-  logout() {
-    this.afService.logout();
-  }
-
 
 
   // add(){

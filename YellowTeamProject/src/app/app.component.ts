@@ -28,25 +28,15 @@ export class MyApp {
     storage: Storage
   ) {
 
-
     this.afService.af.auth.subscribe((auth) => {
       if (auth == null) {
         this.nav.setRoot(LoginPage);
       } else {
-        storage.ready().then( _ => {
-          let p1 = storage.get('loggedInUserId');
-          let p2 = storage.get('loggedInUserDisplayName');
-
-          Promise.all([p1,p2]).then(values => {
-            if (values[0] && values[1]){
-              this.afService.userId = values[0];
-              this.afService.displayName = values[1];
-              this.nav.setRoot(MainSearchPage);
-            } else {
-              this.nav.setRoot(LoginPage);
-            }
-          });
-        });
+        if (this.afService.userId && this.afService.displayName){
+          this.nav.setRoot(MainSearchPage);
+        } else {
+          this.nav.setRoot(LoginPage);
+        }
       }
     });
 
@@ -69,4 +59,9 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
  
+  logout() {
+    this.afService.logout();
+  }
+
+
 }
