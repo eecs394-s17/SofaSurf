@@ -3,26 +3,17 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Search Results</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-row>
-    <ion-col>
-      <button id="gobackbut" ion-button round icon-center clear large (click)="Goback()"><ion-icon name="arrow-round-back"></ion-icon></button>
-    </ion-col>
-    <ion-col>
-      <img id="logo" src="assets/images/logo_script.jpeg" />
-    </ion-col>
-  </ion-row>
-  <ion-row>
     Showing search results for {{ city }}, {{ country }}.
   </ion-row>
 
-  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsBycanHost()">SofaNum</button>
-  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsBySofaNum()">canHost</button>
-  <button id="gobackbut" ion-button round icon-center clear large (click)="addHost()">addhost</button>
+  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsByCanHost()">SofaNum</button>
+  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsByNumBeds()">canHost</button>
 
 
   <ion-item>
@@ -44,7 +35,7 @@
   </ion-item>
 
   <ng-container *ngFor="let host of hostList | async">
-    <ion-card *ngIf="host.City == city">
+    <ion-card *ngIf="host.city == city" (click)="viewHost(host.$key)">
 
         <!-- <ion-slides pager>
 
@@ -61,16 +52,17 @@
           </ion-slide>
 
       </ion-slides> -->
-
-      <ion-item>
+      <ion-card-header>
+        {{host.name}}
+      </ion-card-header>
+      <ion-card-content>
         <!-- <ion-avatar item-left>
           <img src={{host.hostimg}}>
         </ion-avatar> -->
-        <h1>{{host.Name}}</h1>
-        <h2>{{host.City}}, {{host.Country}}</h2>
+        <h2>{{host.city}}, {{host.country}}</h2>
         <!-- <p>Connection: {{host.connection}}    <span><small>{{host.degree}}</small></span></p> -->
 
-      </ion-item>
+      </ion-card-content>
       <!-- <ion-card-content>
         <h1>{{host.intro}}</h1>
       </ion-card-content>

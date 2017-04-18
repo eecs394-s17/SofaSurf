@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class AF {
@@ -8,7 +9,7 @@ export class AF {
   public displayName: string;
   public userId: string;
 
-  constructor(public af: AngularFire) {
+  constructor(public af: AngularFire, public storage: Storage) {
     this.hostList = this.af.database.list('users');
   }
 
@@ -17,21 +18,18 @@ export class AF {
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup,
     }).then((data) => {
-      console.log(data);
       this.userId = data.uid;
       this.displayName = data.auth.displayName;
+      this.storage.ready().then(() => {
+        this.storage.set('loggedInUserId', this.userId);
+        this.storage.set('loggedInUserDisplayName', this.displayName);
+      })
     });
   }
 
   logout() {
     return this.af.auth.logout();
   }
-
-  addHost(hostInfo){
-    this.hostList.push(hostInfo);
-  }
-
-
 
   hostsByCity(city){
     return this.af.database.list('users', {

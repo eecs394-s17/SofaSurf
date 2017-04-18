@@ -1,13 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { Platform, MenuController, Nav } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
+import { AF } from '../providers/af';
 
 import { LoginPage } from '../pages/login/login';
 import { MainSearchPage } from '../pages/main-search/main-search';
-
-import { AF } from '../providers/af';
+import { EditProfile } from '../pages/editProfile/edit-profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,38 +16,46 @@ import { AF } from '../providers/af';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  pages: Array<{title: string, component: any}>;
-
   rootPage: any = LoginPage;
-  public isLoggedIn: boolean;
+  pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public afService: AF
+    public afService: AF,
+    storage: Storage
   ) {
 
-    this.afService.af.auth.subscribe(
-      (auth) => {
-        if(auth == null || this.afService.userId == null) {
-          console.log("Not Logged in.");
-          this.isLoggedIn = false;
-          this.nav.push( LoginPage );
-        }
-        else {
-          console.log("Successfully Logged in.");
-          this.isLoggedIn = true;
-          this.nav.push( MainSearchPage );
-        }
+
+    this.afService.af.auth.subscribe((auth) => {
+      if (auth == null) {
+        this.nav.setRoot(LoginPage);
+      } else {
+        storage.ready().then( _ => {
+          let p1 = storage.get('loggedInUserId');
+          let p2 = storage.get('loggedInUserDisplayName');
+
+          Promise.all([p1,p2]).then(values => {
+            if (values[0] && values[1]){
+              this.afService.userId = values[0];
+              this.afService.displayName = values[1];
+              this.nav.setRoot(MainSearchPage);
+            } else {
+              this.nav.setRoot(LoginPage);
+            }
+          });
+        });
       }
-    );
+    });
+
     this.initializeApp();
 
     this.pages = [
-    { title: 'MainSearch', component: MainSearchPage},
-    { title: 'LoginPage', component: LoginPage}]
+      { title: 'Search', component: MainSearchPage},
+      { title: 'Edit My Profile', component: EditProfile }
+    ]
   };
 
   initializeApp() {
@@ -57,7 +66,6 @@ export class MyApp {
   }
 
   openPage(page) {
-
     this.nav.setRoot(page.component);
   }
  

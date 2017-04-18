@@ -14,7 +14,7 @@ export class LoginPage {
 
   login() {
     this.afService.loginWithFacebook().then(
-      _ => this.nav.push(MainSearchPage)
+      _ => this.nav.setRoot(MainSearchPage)
     );
   }
 

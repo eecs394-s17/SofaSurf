@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ListPage } from '../list/list';
 import { NavController, ToastController, ModalController } from 'ionic-angular';
-import { Events } from 'ionic-angular';
-import {AutocompletePage} from '../autocomplete/autocomplete';
-import { EditProfile } from '../editProfile/edit-profile';
+import { AutocompletePage } from '../autocomplete/autocomplete';
 import { AF } from '../../providers/af';
 
 
@@ -19,7 +17,6 @@ export class MainSearchPage {
 
   constructor(
     public nav: NavController,
-    public event: Events,
     public toast: ToastController,
     public modalCtrl: ModalController,
     public afService: AF
@@ -32,8 +29,12 @@ export class MainSearchPage {
   }
   search(){
     if(this.address.country != ""){
-      this.nav.push(ListPage);
-      this.event.publish('location', this.address.city, this.address.country, this.localStartDate, this.localEndDate);
+      this.nav.push(ListPage, {
+        city: this.address.city,
+        country: this.address.country,
+        startDate: this.localStartDate,
+        endDate: this.localEndDate
+      });
     }
     else{
       let toast = this.toast.create({
@@ -43,10 +44,6 @@ export class MainSearchPage {
       });
       toast.present();
     }
-  }
-
-  editProfile(){
-    this.nav.push(EditProfile);
   }
 
   Goback(){

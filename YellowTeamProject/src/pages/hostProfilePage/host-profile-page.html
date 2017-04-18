@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{(hostProfile | async)?.name}}'s Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="upper">
+    <ion-slides pager>
+      <ion-slide *ngFor="let sofaImg of (hostProfile | async)?.sofaImages">
+        <img [src]="sofaImg">
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="down">
+    <ion-item>
+      <ion-row>
+        <ion-col text-left>
+          <ion-avatar item-left>
+            <img [src]="(hostProfile | async)?.displayImage">
+          </ion-avatar>
+        </ion-col>
+        <ion-col text-right>
+          <h1>{{(hostProfile | async)?.name}}</h1>
+          <h2>{{(hostProfile | async)?.city}}, {{(hostProfile | async)?.country}}</h2>
+          <h2>Connection:</h2>
+          <p>{{connection}}<span><small>{{degree}}</small></span></p>
+          <h2>Phone:<p>{{(hostProfile | async)?.phone}}</p></h2>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item text-wrap>
+      {{(hostProfile | async)?.aboutMe}}
+    </ion-item>
+  </div>
+
+
+<!--   <div class="comment">
+    <ion-row>
+      <ion-col text-left>
+        <h2>Comments</h2>
+      </ion-col>
+      <ion-col text-right large>
+        <button type='submit' (click)="addComment()" ion-button round outline medium><p>Post</p></button>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-label color="primary" floating>Write Comments</ion-label>
+      <ion-input type="text" [(ngModel)]="newcomment" name="newcomment"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rate</ion-label>
+      <ion-select [(ngModel)]="rate">
+        <ion-option value="Very Bad">Very Bad&emsp;<ion-icon name="ios-thumbs-down"></ion-icon></ion-option>
+        <ion-option value="Bad">Bad&emsp;<ion-icon name="md-sad"></ion-icon></ion-option>
+        <ion-option value="Medium">Medium&emsp;<ion-icon name="ios-thumbs-down"></ion-icon></ion-option>
+        <ion-option value="Good">Good&emsp;<ion-icon name="md-happy"></ion-icon></ion-option>
+        <ion-option value="Very Good">Very Good&emsp;<ion-icon name="ios-thumbs-up"></ion-icon></ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list *ngFor="let comment of Comments">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src={{comment.headimg}}>
+        </ion-avatar>
+        <h2>{{comment.name}}</h2>
+        <h3>Rate: {{comment.rate}}</h3>
+        <p>{{comment.comment}}</p>
+      </ion-item>
+    </ion-list>
+  </div> -->
+
+</ion-content>
