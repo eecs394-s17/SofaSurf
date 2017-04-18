@@ -8,17 +8,18 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-row>
     Showing search results for {{ city }}, {{ country }}.
   </ion-row>
 
-  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsByCanHost()">SofaNum</button>
-  <button id="gobackbut" ion-button round icon-center clear large (click)="hostsByNumBeds()">canHost</button>
+<!--   <button ion-button round icon-center clear large (click)="hostsByCanHost()">SofaNum</button>
+  <button ion-button round icon-center clear large (click)="hostsByNumBeds()">canHost</button> -->
 
 
-  <ion-item>
+<!--   <ion-item>
   <ion-label>Number of Sofa</ion-label>
-  <ion-select [(ngModel)]="gender">
+  <ion-select>
     <ion-option (click) = "hostsBySofaNum" selected="true">Low to High</ion-option>
     <ion-option value="m">High to Low</ion-option>
   </ion-select>
@@ -32,51 +33,29 @@
     <ion-option value="f" selected="true">Low to High</ion-option>
     <ion-option value="m">High to Low</ion-option>
   </ion-select>
-  </ion-item>
+  </ion-item> -->
 
   <ng-container *ngFor="let host of hostList | async">
     <ion-card *ngIf="host.city == city" (click)="viewHost(host.$key)">
 
-        <!-- <ion-slides pager>
+      <ion-item>
+        <ion-avatar item-left>
+          <img [src]= "host.displayImage">
+        </ion-avatar>
+        <h2>{{host.name}}</h2>
+        <p>{{host.city}} • {{host.country}}</p>
+        <p>You share 20 friends-of-friends</p>
+      </ion-item>
 
-          <ion-slide>
-            <img class="full" src={{host.CIty}}>
-          </ion-slide>
+      <ion-slides pager>
+        <ion-slide *ngFor="let sofaImg of host.sofaImages">
+          <img [src]="sofaImg">
+        </ion-slide>
+      </ion-slides>
 
-          <ion-slide>
-            <img class="full" src={{host.sofaimg2}}>
-          </ion-slide>
-
-          <ion-slide>
-            <img class="full" src={{host.sofaimg3}}>
-          </ion-slide>
-
-      </ion-slides> -->
-      <ion-card-header>
-        {{host.name}}
-      </ion-card-header>
       <ion-card-content>
-        <!-- <ion-avatar item-left>
-          <img src={{host.hostimg}}>
-        </ion-avatar> -->
-        <h2>{{host.city}}, {{host.country}}</h2>
-        <!-- <p>Connection: {{host.connection}}    <span><small>{{host.degree}}</small></span></p> -->
-
+        <p>{{host.aboutMe}}</p>
       </ion-card-content>
-      <!-- <ion-card-content>
-        <h1>{{host.intro}}</h1>
-      </ion-card-content>
-
-      <ion-col text-right>
-        <ion-note text-right>
-          Rating: <ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon><ion-icon name="heart" isActive="false"></ion-icon>
-        </ion-note>
-      </ion-col>
-      <ion-row>
-      <p>&emsp;</p>
-      </ion-row> -->
-
-
 
     </ion-card>
 
