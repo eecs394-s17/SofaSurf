@@ -1,27 +1,19 @@
 import {Injectable} from "@angular/core";
-import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
-import { Storage } from '@ionic/storage';
+import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Injectable()
 export class AF {
   public hostList: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
-  public displayName: string;
   public userId: string;
-  public photoURL: string;
+  public currentUser: FirebaseObjectObservable<any>;
 
-  constructor(public af: AngularFire, public storage: Storage) {
+  constructor(public af: AngularFire) {
     this.hostList = this.af.database.list('users');
-    this.storage.ready().then(_=>{
-      this.storage.get('loggedInUserId').then((val)=>
-        this.userId = val
-      );
-      this.storage.get('loggedInUserDisplayName').then((val)=>
-        this.displayName = val
-      );
-      this.storage.get('loggedInUserPhotoURL').then((val)=>
-        this.photoURL = val
-      );
+    this.af.auth.subscribe((auth) => {
+      if (auth != null) {
+        this.setOrCreateUser(auth);
+      }
     });
   }
 
@@ -29,53 +21,35 @@ export class AF {
     return this.af.auth.login({
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup,
-    }).then((data) => {
-      this.userId = data.uid;
-      this.displayName = data.auth.displayName;
-      this.photoURL = data.auth.photoURL;
-      this.checkNewUser(data);
-      return this.storage.ready();
-    }).then(_=>{
-      this.storage.set('loggedInUserId', this.userId);
-      this.storage.set('loggedInUserDisplayName', this.displayName);
-      this.storage.set('loggedInUserPhotoURL', this.photoURL);
-      return Promise.resolve();
     });
   }
 
   logout() {
-    return this.af.auth.logout().then(_=>{
-      this.storage.ready().then(_=>{
-        this.storage.remove('loggedInUserId');
-        this.storage.remove('loggedInUserDisplayName');
-        this.storage.remove('loggedInUserPhotoURL');
-      });
-    });
+    return this.af.auth.logout();
   }
 
   hostsByCity(city){
     return this.af.database.list('users', {
       query: {
-        orderByChild: 'City',
+        orderByChild: 'city',
         equalTo: city
       }
     });
   }
 
   getUserProfile(userId){
-    console.log('retrieving user profile for ' + userId);
     return this.af.database.object('users/' + userId);
   }
 
-  checkNewUser(data){
-    console.log('checking new user');
-    let userProfile = this.af.database.object('users/' + data.uid);
-    userProfile.subscribe((obj)=>{
+  setOrCreateUser(auth){
+    this.userId = auth.uid;
+    this.currentUser = this.af.database.object('users/' + auth.uid);
+    this.currentUser.subscribe((obj)=>{
       if (!obj.$exists()) {
-        userProfile.update({
-          name: data.auth.displayName,
-          email: data.auth.email,
-          photoURL: data.auth.photoURL
+        this.currentUser.update({
+          name: auth.displayName,
+          email: auth.email,
+          photoURL: auth.photoURL
         });
       };
     });

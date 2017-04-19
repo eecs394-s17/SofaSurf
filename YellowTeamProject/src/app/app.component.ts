@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Platform, MenuController, Nav } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { AF } from '../providers/af';
 
@@ -25,22 +24,14 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public afService: AF,
-    storage: Storage
   ) {
-
     this.afService.af.auth.subscribe((auth) => {
       if (auth == null) {
         this.nav.setRoot(LoginPage);
       } else {
-        // TODO: add photoURL to below test if needed
-        if (this.afService.userId && this.afService.displayName){
-          this.nav.setRoot(MainSearchPage);
-        } else {
-          this.nav.setRoot(LoginPage);
-        }
+        this.nav.setRoot(MainSearchPage);
       }
     });
-
     this.initializeApp();
   };
 

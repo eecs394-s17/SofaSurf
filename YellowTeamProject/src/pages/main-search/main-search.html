@@ -11,7 +11,7 @@
 
   <img src="assets/images/logo_L.png">
 
-  <p id="welcome">Welcome {{afService.displayName}}!</p>
+  <p id="welcome">Welcome {{(afService.currentUser | async)?.name}}!</p>
   <ion-list>
 
     <ion-item>

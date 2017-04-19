@@ -4,7 +4,7 @@ import { ToastController, ModalController } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { FirebaseObjectObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
-import {AutocompletePage} from '../autocomplete/autocomplete';
+import { AutocompletePage } from '../autocomplete/autocomplete';
 
 @Component({
   selector:'editProfile',
@@ -35,7 +35,8 @@ export class EditProfile{
       numBeds: ['']
     });
 
-    this.currentProfile = this.afService.getUserProfile(this.afService.userId);
+    this.currentProfile = this.afService.currentUser;
+
     this.currentProfile.subscribe(snapshot => {
       console.log(snapshot);
       this.userProfile.patchValue({
