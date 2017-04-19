@@ -12,10 +12,14 @@ login-page {
 	    display: block;
 	}
 	.text{
+		font-size:17px;
 		text-align:center;
 		color:grey;
 		font-style:italic;
-		font-weight:bold;
+		font-family:Arial;
+	}
+	button{
+		font-family:Arial;
 	}
 
 }
