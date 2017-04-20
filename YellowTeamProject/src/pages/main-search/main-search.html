@@ -23,19 +23,26 @@
       <ion-label>Country</ion-label>
       <ion-input [(ngModel)]='address.country' name='country' placeholder='Country' id="country" type="text" ></ion-input>
     </ion-item>
-    <ion-item>
-      Date
-      <button ion-datepicker (ionChanged)="setStartDate($event);" [value]="localStartDate" full="true" calendar="true" clear class="ScheduleDate">
-        <span *ngIf="!localStartDate">Start Date</span>
-        {{localStartDate | date:"shortDate"}}
-      </button>
-
-      <button ion-datepicker (ionChanged)="setEndDate($event);" [value]="localEndDate" full="true" calendar="true" clear class="ScheduleDate">
-        <span *ngIf="!localEndDate">End Date</span>
-        {{localEndDate | date:"shortDate"}}
-      </button>
-    </ion-item>
-
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          Start
+          <button ion-datepicker (ionChanged)="setStartDate($event);" [value]="localStartDate" full="true" calendar="true" clear class="ScheduleDate">
+            <span *ngIf="!localStartDate">Start Date</span>
+            {{localStartDate | date:"shortDate"}}
+          </button>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          End
+          <button ion-datepicker (ionChanged)="setEndDate($event);" [value]="localEndDate" full="true" calendar="true" clear class="ScheduleDate">
+            <span *ngIf="!localEndDate">End Date</span>
+            {{localEndDate | date:"shortDate"}}
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
     <button ion-button round icon-left (click)="search()" class="center"><ion-icon name="sunny"></ion-icon>Surf</button>
   </ion-list>
 
