@@ -30,7 +30,7 @@
         <span class="small_text" *ngIf="!localStartDate">Start Date</span>
         {{localStartDate | date:"shortDate"}}
       </button>
-
+      -
       <button ion-datepicker (ionChanged)="setEndDate($event);" [value]="localEndDate" full="true" calendar="true" clear class="ScheduleDate date">
         <span class="small_text" *ngIf="!localEndDate">End Date</span>
         {{localEndDate | date:"shortDate"}}
