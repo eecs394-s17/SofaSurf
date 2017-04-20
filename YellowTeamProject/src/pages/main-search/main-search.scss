@@ -5,16 +5,35 @@ page-main-search {
 		display: block;
 		width: 280px;
 	}
+	button{
+		font-family:Arial;
+	}
 	.center{
 	    margin-left: auto;
 	    margin-right: auto;
 	    display: block;
+	    text-align:center;
 	}
-#welcome{
-	font-size: 20px;
-	text-align: center;
-	color:grey;
-	font-style:italic;
-	font-weight:bold;
-}
+	.text{
+		font-size: 17px;
+		color:grey;
+		font-family:Arial;
+	}
+	.medium_text{
+		font-size:15px;
+		font-family:Arial;
+	}
+	.small_text{
+		font-size: 13px;
+		font-family:Arial;
+	}
+	.italic{
+		font-style:italic;
+	}
+	.date{
+		background:white;
+		color:grey;
+		border-radius:40%;
+		border:1.5px solid darkgrey;
+	}
 }
