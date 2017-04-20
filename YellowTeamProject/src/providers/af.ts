@@ -10,9 +10,10 @@ export class AF {
 
   constructor(public af: AngularFire) {
     this.hostList = this.af.database.list('users');
-    this.af.auth.subscribe((auth) => {
-      if (auth != null) {
-        this.setOrCreateUser(auth);
+    this.af.auth.subscribe((data) => {
+      console.log('constructor set or create called');
+      if (data != null) {
+        this.setOrCreateUser(data);
       }
     });
   }
@@ -41,16 +42,21 @@ export class AF {
     return this.af.database.object('users/' + userId);
   }
 
-  setOrCreateUser(auth){
-    this.userId = auth.uid;
-    this.currentUser = this.af.database.object('users/' + auth.uid);
+  setOrCreateUser(data){
+    console.log(data.uid);
+    this.userId = data.uid;
+    this.currentUser = this.af.database.object('users/' + data.uid);
     this.currentUser.subscribe((obj)=>{
       if (!obj.$exists()) {
-        this.currentUser.update({
-          name: auth.displayName,
-          email: auth.email,
-          photoURL: auth.photoURL
-        });
+      console.log(data);
+        let newUser = {
+          name: data.auth.displayName,
+          email: data.auth.email,
+          photoURL: data.auth.photoURL
+        };
+        console.log(newUser);
+        debugger;
+        this.currentUser.update(newUser);
       };
     });
   }
