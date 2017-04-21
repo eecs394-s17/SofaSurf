@@ -10,13 +10,15 @@ login-page {
 	    margin-left: auto;
 	    margin-right: auto;
 	    display: block;
+	    text-align:center;
 	}
 	.text{
 		font-size:17px;
-		text-align:center;
 		color:grey;
-		font-style:italic;
 		font-family:Arial;
+	}
+	.italic{
+		font-style:italic;
 	}
 	button{
 		font-family:Arial;

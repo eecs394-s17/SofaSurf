@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <!-- <ion-title>Home</ion-title> -->
   </ion-navbar>
 </ion-header>
 
@@ -11,38 +11,33 @@
 
   <img src="assets/images/logo_L.png">
 
-  <p id="welcome">Welcome {{(afService.currentUser | async)?.name}}!</p>
+  <p class="text italic center">Welcome {{(afService.currentUser | async)?.name}}!</p>
+  
   <ion-list>
 
     <ion-item>
-      <ion-label>City</ion-label>
-      <ion-input (click)="showAddressModal()" [(ngModel)]="address.city" type="text" placeholder="Pick an address"></ion-input>
+      <ion-label class="text">City</ion-label>
+      <ion-input (click)="showAddressModal()" [(ngModel)]="address.city" type="text" class="medium_text" placeholder="Pick an address"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Country</ion-label>
-      <ion-input [(ngModel)]='address.country' name='country' placeholder='Country' id="country" type="text" ></ion-input>
+      <ion-label class="text">Country</ion-label>
+      <ion-input [(ngModel)]='address.country' name='country' placeholder='Pick a country' id="country" type="text" class="medium_text"></ion-input>
     </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          Start
-          <button ion-datepicker (ionChanged)="setStartDate($event);" [value]="localStartDate" full="true" calendar="true" clear class="ScheduleDate">
-            <span *ngIf="!localStartDate">Start Date</span>
-            {{localStartDate | date:"shortDate"}}
-          </button>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          End
-          <button ion-datepicker (ionChanged)="setEndDate($event);" [value]="localEndDate" full="true" calendar="true" clear class="ScheduleDate">
-            <span *ngIf="!localEndDate">End Date</span>
-            {{localEndDate | date:"shortDate"}}
-          </button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+
+    <ion-item class="text">
+      Date
+      <button ion-datepicker (ionChanged)="setStartDate($event);" [value]="localStartDate" full="true" calendar="true" clear class="ScheduleDate date">
+        <span class="small_text" *ngIf="!localStartDate">Start Date</span>
+        {{localStartDate | date:"shortDate"}}
+      </button>
+      -
+      <button ion-datepicker (ionChanged)="setEndDate($event);" [value]="localEndDate" full="true" calendar="true" clear class="ScheduleDate date">
+        <span class="small_text" *ngIf="!localEndDate">End Date</span>
+        {{localEndDate | date:"shortDate"}}
+      </button>
+    </ion-item>
+
     <button ion-button round icon-left (click)="search()" class="center"><ion-icon name="sunny"></ion-icon>Surf</button>
   </ion-list>
 
