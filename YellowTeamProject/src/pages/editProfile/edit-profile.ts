@@ -11,10 +11,10 @@ import { AutocompletePage } from '../autocomplete/autocomplete';
   templateUrl: 'edit-profile.html'
 })
 export class EditProfile{
-  
+
   private userProfile : FormGroup;
   public currentProfile: FirebaseObjectObservable<any>;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     public nav: NavController,
@@ -80,4 +80,3 @@ export class EditProfile{
     modal.present();
   }
 }
-
