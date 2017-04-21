@@ -11,6 +11,7 @@ export class LoginPage {
   };
 
   login() {
-    this.afService.loginWithFacebook();
+    //this.afService.loginWithFacebook();
+    this.afService.doFacebookLogin();
   }
 }
