@@ -61,7 +61,8 @@
         <ion-input type="number" formControlName="numBeds"></ion-input>
       </ion-item>  
 
-
-      <button ion-button type="submit" [disabled]="!userProfile.valid">Save Changes</button>
+      <ion-fab top right>
+        <button color="secondary" ion-fab mini type="submit" [disabled]="!userProfile.valid"><ion-icon name="checkmark"></ion-icon></button>
+      </ion-fab>
     </form>	
 </ion-content>

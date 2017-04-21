@@ -11,7 +11,7 @@
 <ion-content padding>
 
   <ion-fab top right *ngIf="isMyProfile">
-    <button ion-fab mini (click)="editProfile()"><ion-icon name="md-create"></ion-icon></button>
+    <button color="light" ion-fab mini (click)="editProfile()"><ion-icon name="md-create"></ion-icon></button>
   </ion-fab>
 
   <ion-slides pager>
@@ -32,24 +32,17 @@
     <ion-card-content>
       <p>{{(currentProfile | async)?.aboutMe}}</p>
     </ion-card-content>
-    <ion-row>
-      <ion-col [hidden]="!(currentProfile | async)?.email">
-        <a [attr.href]="'mailto:' + (currentProfile | async)?.email">
-          <button ion-button icon-left block>
-            <ion-icon name="mail"></ion-icon>
-            Email
-          </button>
-        </a>
-      </ion-col>
-      <ion-col [hidden]="!(currentProfile | async)?.phone">
-        <a [attr.href]="'sms://' + (currentProfile | async)?.phone">
-          <button ion-button icon-left block>
-            <ion-icon name="call"></ion-icon>
-            Text
-          </button>
-        </a>
-      </ion-col>
-    </ion-row>
+
+
+    <a [hidden]="!(currentProfile | async)?.email" [attr.href]="'mailto:' + (currentProfile | async)?.email" button ion-button icon-left block outline>
+        <ion-icon name="mail"></ion-icon> Email
+    </a>
+
+    <a [hidden]="!(currentProfile | async)?.phone" [attr.href]="'sms://' + (currentProfile | async)?.phone" button ion-button icon-left block outline>
+      <ion-icon name="call"></ion-icon> Text
+    </a>
+
+
   </ion-list>
 
 </ion-content>
