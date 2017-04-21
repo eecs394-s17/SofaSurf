@@ -24,7 +24,7 @@
 
       <ion-item>
         <ion-label class="text">Country</ion-label>
-        <ion-input [(ngModel)]='address.country' name='country' placeholder='Pick a country' id="country" type="text" class="small_text"></ion-input>
+        <ion-input (click)="showAddressModal()" [(ngModel)]='address.country' name='country' placeholder='Pick a country' id="country" type="text" class="small_text"></ion-input>
       </ion-item>
 
       <ion-item class="text">

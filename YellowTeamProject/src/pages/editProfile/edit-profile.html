@@ -8,7 +8,12 @@
 </ion-header>
 
 <ion-content padding>
-	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
+
+  <ion-fab top right fab-fixed>
+    <button color="secondary" ion-fab mini (click)="updateUser()"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab> 
+
+	<form [formGroup]="userProfile">
       <ion-item>
         <ion-label floating>Name</ion-label>
         <ion-input type="text" formControlName="name"></ion-input>
@@ -60,9 +65,6 @@
         <ion-label floating>I can host up to # people at once</ion-label>
         <ion-input type="number" formControlName="numBeds"></ion-input>
       </ion-item>  
-
-      <ion-fab top right>
-        <button color="secondary" ion-fab mini type="submit" [disabled]="!userProfile.valid"><ion-icon name="checkmark"></ion-icon></button>
-      </ion-fab>
     </form>	
+
 </ion-content>
