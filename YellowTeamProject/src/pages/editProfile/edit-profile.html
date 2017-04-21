@@ -8,6 +8,18 @@
 </ion-header>
 
 <ion-content padding>
+  
+  <ion-card>
+    <ion-card-content>
+      Hello World, this is my camera app
+
+      <button (click)="takePicture()">Take a Picture</button>
+
+      Latest Picture:
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
+
 	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
       <ion-item>
         <ion-label floating>Name</ion-label>
