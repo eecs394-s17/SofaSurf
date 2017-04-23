@@ -15,7 +15,7 @@ import { ListPage } from '../pages/list/list';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { EditProfile } from '../pages/editProfile/edit-profile';
 import { ProfilePage } from '../pages/profile/profile';
-import { Camera } from '../pages/camera/camera';
+import { CameraPage } from '../pages/camera/camera';
 import { AF } from "../providers/af";
 
 const cloudSettings : CloudSettings = {
@@ -42,7 +42,7 @@ export const firebaseConfig = {
     AutocompletePage,
     EditProfile,
     ProfilePage,
-    Camera
+    CameraPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -63,13 +63,14 @@ export const firebaseConfig = {
     AutocompletePage,
     EditProfile,
     ProfilePage,
-    Camera
+    CameraPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AF
+    AF,
+    CameraPage
   ]
 })
 export class AppModule {}

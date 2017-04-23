@@ -1,11 +1,11 @@
+import { Component } from '@angular/core';
 import { Camera } from 'ionic-native';
 
 @Component({
-  selector:'camera',
-  templateUrl: ''
+  templateUrl: 'camera.html'
 })
 
-export class Camera{
+export class CameraPage{
   base64Image: string;
   constructor(){}
 

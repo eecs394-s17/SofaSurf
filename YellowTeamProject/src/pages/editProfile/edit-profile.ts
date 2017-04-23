@@ -5,7 +5,7 @@ import { NavController } from 'ionic-angular';
 import { FirebaseObjectObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
 import { AutocompletePage } from '../autocomplete/autocomplete';
-import { Camera } from '../camera/camera';
+import { CameraPage } from '../camera/camera';
 @Component({
   selector:'editProfile',
   templateUrl: 'edit-profile.html'
@@ -14,14 +14,15 @@ export class EditProfile{
 
   private userProfile : FormGroup;
   public currentProfile: FirebaseObjectObservable<any>;
-  public base64Image: string;
+  public base64Image: any;
 
   constructor(
     private formBuilder: FormBuilder,
     public nav: NavController,
     public afService: AF,
     public toast: ToastController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public camera : CameraPage
     ) {
 
     this.userProfile = this.formBuilder.group({
@@ -34,7 +35,7 @@ export class EditProfile{
       phone: [''],
       canHost: [''],
       numBeds: [''],
-      sofaImages: ['','','']
+      sofaImages: ['']
     });
 
     this.currentProfile = this.afService.currentUser;
@@ -85,6 +86,7 @@ export class EditProfile{
   }
 
   takePicture(){
-    this.base64Image = Camera.takePicture();
+    this.base64Image = this.camera.takePicture();
+    this.userProfile.patchValue({'sofaImages':this.base64Image})
   }
 }

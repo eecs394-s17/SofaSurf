@@ -50,12 +50,25 @@ export class AF {
     this.userId = data.uid;
     this.currentUser = this.af.database.object('users/' + data.uid);
     this.currentUser.subscribe((obj)=>{
-      if (!obj.$exists()) {
       console.log(data);
+      console.log(data.auth.displayName);
+      console.log(data.auth.email);
+      console.log(data.auth.photoURL);
+
+      if (!obj.$exists()) {
+
         let newUser = {
           name: data.auth.displayName,
           email: data.auth.email,
-          photoURL: data.auth.photoURL
+          photoURL: data.auth.photoURL,
+          gender: '',
+          city: '',
+          country: '',
+          aboutMe: '',
+          phone: '',
+          canHost: '',
+          numBeds: '',
+          sofaImages: ''
         };
         console.log(newUser);
         debugger;
@@ -114,12 +127,11 @@ export class AF {
           Facebook.login(['public_profile', 'email']).then(facebookData => {
             let provider = firebase.auth.FacebookAuthProvider.credential(facebookData.authResponse.accessToken);
             firebase.auth().signInWithCredential(provider).then(firebaseData => {
-              this.af.database.list('users').update(firebaseData.auth.uid, {
-                name: firebaseData.displayName,
-                email: firebaseData.email,
-                provider: 'facebook',
-                image: firebaseData.photoURL
-              });
+              // this.af.database.list('users').update(firebaseData.uid, {
+              //   name: firebaseData.displayName,
+              //   email: firebaseData.email,
+              // });
+              this.setOrCreateUser(firebaseData);
               // observer.next();
             });
           }, error => {
@@ -131,12 +143,13 @@ export class AF {
             provider: AuthProviders.Facebook,
             method: AuthMethods.Popup
           }).then((facebookData) => {
-            this.af.database.list('users').update(facebookData.uid, {
-              name: facebookData.auth.displayName,
-              email: facebookData.auth.email,
-              provider: 'facebook',
-              image: facebookData.auth.photoURL
-            });
+            // this.af.database.list('users').update(facebookData.uid, {
+            //   name: facebookData.auth.displayName,
+            //   email: facebookData.auth.email,
+            //   provider: 'facebook',
+            //   image: facebookData.auth.photoURL
+            // });
+            this.setOrCreateUser(facebookData);
             // observer.next();
           }).catch((error) => {
             console.info("error", error);
