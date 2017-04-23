@@ -5,7 +5,7 @@ import { NavController } from 'ionic-angular';
 import { FirebaseObjectObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
 import { AutocompletePage } from '../autocomplete/autocomplete';
-import { Camera } from 'ionic-native';
+import { Camera } from '../camera/camera';
 @Component({
   selector:'editProfile',
   templateUrl: 'edit-profile.html'
@@ -85,15 +85,6 @@ export class EditProfile{
   }
 
   takePicture(){
-    Camera.getPicture({
-        destinationType: Camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-        this.base64Image = "data:image/jpeg;base64," + imageData;
-    }, (err) => {
-        console.log(err);
-    });
+    this.base64Image = Camera.takePicture();
   }
 }
