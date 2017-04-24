@@ -43,13 +43,7 @@ export class AF {
     this.userId = data.uid;
     this.currentUser = this.af.database.object('users/' + data.uid);
     this.currentUser.subscribe((obj)=>{
-      console.log(data);
-      console.log(data.auth.displayName);
-      console.log(data.auth.email);
-      console.log(data.auth.photoURL);
-
       if (!obj.$exists()) {
-
         let newUser = {
           name: data.auth.displayName,
           email: data.auth.email,
@@ -73,7 +67,7 @@ export class AF {
   doFacebookLogin() {
         if (this.platform.is('cordova')) {
           console.log("cordova platform");
-          Facebook.login(['public_profile', 'email']).then(facebookData => {
+          Facebook.login(['public_profile', 'email', 'user_friends']).then(facebookData => {
             let provider = firebase.auth.FacebookAuthProvider.credential(facebookData.authResponse.accessToken);
             firebase.auth().signInWithCredential(provider).then(firebaseData => {
               this.setOrCreateUser(firebaseData);
