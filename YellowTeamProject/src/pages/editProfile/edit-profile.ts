@@ -6,6 +6,7 @@ import { FirebaseObjectObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 import { Camera } from 'ionic-native';
+
 @Component({
   selector:'editProfile',
   templateUrl: 'edit-profile.html'
@@ -15,7 +16,7 @@ export class EditProfile{
   private userProfile : FormGroup;
   public currentProfile: FirebaseObjectObservable<any>;
   public base64Image: string;
-
+  public photoarray : Array<string>;
   constructor(
     private formBuilder: FormBuilder,
     public nav: NavController,
@@ -33,13 +34,15 @@ export class EditProfile{
       email: [''],
       phone: [''],
       canHost: [''],
-      numBeds: ['']
+      numBeds: [''],
+      sofaImages: ['']
     });
 
     this.currentProfile = this.afService.currentUser;
 
     this.currentProfile.subscribe(snapshot => {
       console.log(snapshot);
+      this.photoarray = snapshot.sofaImages;
       this.userProfile.patchValue({
         'name': snapshot.name,
         'gender': snapshot.gender,
@@ -49,7 +52,8 @@ export class EditProfile{
         'email': snapshot.email,
         'phone': snapshot.phone,
         'canHost': snapshot.canHost,
-        'numBeds': snapshot.numBeds
+        'numBeds': snapshot.numBeds,
+        'sofaImages': snapshot.sofaImages
       });
     });
   }
@@ -64,7 +68,8 @@ export class EditProfile{
       email: this.userProfile.value.email,
       phone: this.userProfile.value.phone,
       canHost: this.userProfile.value.canHost,
-      numBeds: this.userProfile.value.numBeds
+      numBeds: this.userProfile.value.numBeds,
+      sofaImages: this.userProfile.value.sofaImages
     }).then(
       _ => this.nav.pop()
     );
@@ -84,13 +89,33 @@ export class EditProfile{
   takePicture(){
     Camera.getPicture({
         destinationType: Camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
+        targetWidth: 500,
+        targetHeight: 500
     }).then((imageData) => {
-      // imageData is a base64 encoded string
         this.base64Image = "data:image/jpeg;base64," + imageData;
+        if(this.photoarray[0] != '') this.photoarray.push(this.base64Image);
+        else this.photoarray[0] = this.base64Image;
+        console.log(this.base64Image);
+        this.userProfile.patchValue({'sofaImages':this.photoarray});
     }, (err) => {
         console.log(err);
+    });
+  }
+
+  getPicture(){
+    Camera.getPicture({
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: Camera.DestinationType.DATA_URL,
+      targetHeight: 500,
+      targetWidth: 500
+    }).then((imageData) => {
+      this.base64Image = "data:image/jpeg;base64," + imageData;
+      if(this.photoarray[0] != '') this.photoarray.push(this.base64Image);
+      else this.photoarray[0] = this.base64Image;
+      console.log(this.base64Image);
+      this.userProfile.patchValue({'sofaImages':this.photoarray});
+    }, (err) => {
+      console.log(err);
     });
   }
 }

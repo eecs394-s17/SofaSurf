@@ -8,12 +8,22 @@
 </ion-header>
 
 <ion-content padding>
-  
+
   <ion-card>
     <ion-card-content>
-      Hello World, this is my camera app
-
+      take camera
       <button (click)="takePicture()">Take a Picture</button>
+
+      Latest Picture:
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      get camera from gallery
+
+      <button (click)="getPicture()">Take a Picture</button>
 
       Latest Picture:
       <img [src]="base64Image" *ngIf="base64Image" />
@@ -71,9 +81,8 @@
       <ion-item>
         <ion-label floating>I can host up to # people at once</ion-label>
         <ion-input type="number" formControlName="numBeds"></ion-input>
-      </ion-item>  
-
+      </ion-item>
 
       <button ion-button type="submit" [disabled]="!userProfile.valid">Save Changes</button>
-    </form>	
+    </form>
 </ion-content>
