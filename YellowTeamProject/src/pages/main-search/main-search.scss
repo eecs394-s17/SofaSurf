@@ -1,20 +1,13 @@
 page-main-search {
 	img{
-		margin-left: auto;
-		margin-right: auto;
-		display: block;
-		width: 280px;
+		max-width: 280px;
 	}
-	.center{
-	    margin-left: auto;
-	    margin-right: auto;
-	    display: block;
+	.text{
+		font-size: 17px;
+		color:$primary_text;
 	}
-#welcome{
-	font-size: 20px;
-	text-align: center;
-	color:grey;
-	font-style:italic;
-	font-weight:bold;
-}
+	.small_text{
+		font-size: 15px;
+		color:$primary_text;
+	}
 }

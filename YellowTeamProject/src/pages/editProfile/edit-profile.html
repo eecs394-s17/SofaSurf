@@ -31,6 +31,7 @@
   </ion-card>
 
 	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
+
       <ion-item>
         <ion-label floating>Name</ion-label>
         <ion-input type="text" formControlName="name"></ion-input>
@@ -81,8 +82,10 @@
       <ion-item>
         <ion-label floating>I can host up to # people at once</ion-label>
         <ion-input type="number" formControlName="numBeds"></ion-input>
+
       </ion-item>
 
       <button ion-button type="submit" [disabled]="!userProfile.valid">Save Changes</button>
     </form>
+
 </ion-content>
