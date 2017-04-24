@@ -7,11 +7,9 @@ import { AF } from '../../providers/af';
 })
 export class LoginPage {
 
-  constructor(public afService: AF) {
-  };
+  constructor(public afService: AF) {};
 
   login() {
-    //this.afService.loginWithFacebook();
     this.afService.doFacebookLogin();
   }
 }

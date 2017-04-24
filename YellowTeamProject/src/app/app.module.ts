@@ -6,16 +6,13 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { AngularFireModule,AuthProviders,AuthMethods } from 'angularfire2';
 import { DatePickerModule } from 'datepicker-ionic2';
 import { IonicStorageModule } from '@ionic/storage';
-
 import { MyApp } from './app.component';
-
 import { LoginPage } from '../pages/login/login';
 import { MainSearchPage } from '../pages/main-search/main-search';
 import { ListPage } from '../pages/list/list';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { EditProfile } from '../pages/editProfile/edit-profile';
 import { ProfilePage } from '../pages/profile/profile';
-
 import { AF } from "../providers/af";
 
 const cloudSettings : CloudSettings = {

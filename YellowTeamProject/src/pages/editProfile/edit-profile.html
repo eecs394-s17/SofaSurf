@@ -8,6 +8,28 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-card>
+    <ion-card-content>
+      take camera
+      <button (click)="takePicture()">Take a Picture</button>
+
+      Latest Picture:
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      get camera from gallery
+
+      <button (click)="getPicture()">Take a Picture</button>
+
+      Latest Picture:
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
+
 	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
       <ion-item>
         <ion-label floating>Name</ion-label>
@@ -59,10 +81,17 @@
       <ion-item>
         <ion-label floating>I can host up to # people at once</ion-label>
         <ion-input type="number" formControlName="numBeds"></ion-input>
+<<<<<<< HEAD
       </ion-item>  
 
       <ion-fab top right>
         <button color="secondary" ion-fab mini type="submit" [disabled]="!userProfile.valid"><ion-icon name="checkmark"></ion-icon></button>
       </ion-fab>
     </form>	
+=======
+      </ion-item>
+
+      <button ion-button type="submit" [disabled]="!userProfile.valid">Save Changes</button>
+    </form>
+>>>>>>> 14849cd23600e649679a694c4f77e614a6521bff
 </ion-content>
