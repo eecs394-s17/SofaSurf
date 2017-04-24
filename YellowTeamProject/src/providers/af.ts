@@ -46,7 +46,6 @@ export class AF {
   }
 
   setOrCreateUser(data){
-    console.log(data.uid);
     this.userId = data.uid;
     this.currentUser = this.af.database.object('users/' + data.uid);
     this.currentUser.subscribe((obj)=>{
@@ -78,64 +77,16 @@ export class AF {
   }
 
 
-//test!!!!!!!!
-  // doFacebookLogin() {
-  //   var _authInfo
-  //
-  //   Facebook.login(['email'])
-  //     .then((_response) => {
-  //       console.log(_response)
-  //       //
-  //       // _authInfo = _response
-  //       //
-  //       // return this._FBUserProfile();
-  //
-  //     }).then((success) => {
-  //       //let p: any = firebase.auth.FacebookAuthProvider as firebase.auth.FacebookAuthProvider_Instance
-  //       //this.fbProfile = success;
-  //       let creds = (firebase.auth.FacebookAuthProvider as any).credential(_authInfo.authResponse.accessToken)
-  //       let providerConfig = {
-  //         provider: AuthProviders.Facebook,
-  //         method: AuthMethods.OAuthToken,
-  //         remember: 'default',
-  //         scope: ['email'],
-  //       };
-  //       this.af.auth.login(creds, providerConfig)
-  //         .then((success) => {
-  //           this.setOrCreateUser(success);
-  //         //   console.log("Firebase success: " + JSON.stringify(success));
-  //         //
-  //         //   alert(JSON.stringify(success))
-  //         //
-  //         //   // return this._setUpUser(creds, success.auth)
-  //         })
-  //         // .catch((error) => {
-  //         //   console.log("Firebase failure: " + JSON.stringify(error));
-  //         //   alert(JSON.stringify(error))
-  //         // });
-  //
-  //     })
-  //     .catch((_error) => { console.log(_error) })
-  // }
-
   doFacebookLogin() {
-      console.log("enter facebook login function");
-      // Observable.create(observer => {
-      //   console.log("enter observable");
         if (this.platform.is('cordova')) {
           console.log("cordova platform");
           Facebook.login(['public_profile', 'email']).then(facebookData => {
             let provider = firebase.auth.FacebookAuthProvider.credential(facebookData.authResponse.accessToken);
             firebase.auth().signInWithCredential(provider).then(firebaseData => {
-              // this.af.database.list('users').update(firebaseData.uid, {
-              //   name: firebaseData.displayName,
-              //   email: firebaseData.email,
-              // });
               this.setOrCreateUser(firebaseData);
-              // observer.next();
             });
           }, error => {
-            // observer.error(error);
+
           });
         } else {
           console.log("non-cordova platform");
@@ -143,21 +94,10 @@ export class AF {
             provider: AuthProviders.Facebook,
             method: AuthMethods.Popup
           }).then((facebookData) => {
-            // this.af.database.list('users').update(facebookData.uid, {
-            //   name: facebookData.auth.displayName,
-            //   email: facebookData.auth.email,
-            //   provider: 'facebook',
-            //   image: facebookData.auth.photoURL
-            // });
             this.setOrCreateUser(facebookData);
-            // observer.next();
           }).catch((error) => {
             console.info("error", error);
-            // observer.error(error);
           });
         }
-      //});
     }
-
-
 }

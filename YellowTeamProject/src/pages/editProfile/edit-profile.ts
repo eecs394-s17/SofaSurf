@@ -88,5 +88,7 @@ export class EditProfile{
   takePicture(){
     this.base64Image = this.camera.takePicture();
     this.userProfile.patchValue({'sofaImages':this.base64Image})
+    console.log(this.base64Image);
+    console.log(this.userProfile);
   }
 }

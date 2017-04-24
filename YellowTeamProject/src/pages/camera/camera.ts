@@ -11,7 +11,7 @@ export class CameraPage{
 
   takePicture(){
     Camera.getPicture({
-        destinationType: Camera.DestinationType.DATA_URL,
+        destinationType: Camera.DestinationType.FILE_URL,
         targetWidth: 1000,
         targetHeight: 1000
     }).then((imageData) => {
