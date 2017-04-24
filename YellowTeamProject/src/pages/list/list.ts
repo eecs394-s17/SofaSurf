@@ -30,17 +30,10 @@ export class ListPage {
   }
 
   hostsByNumBeds(){
+    debugger;
     this.hostList = this.afService.af.database.list('users', {
       query: {
         orderByChild: 'numBeds'
-      }
-    });
-  }
-
-  hostsByDegree(){
-    this.hostList = this.afService.af.database.list('users', {
-      query: {
-      orderByChild: 'degree'
       }
     });
   }
