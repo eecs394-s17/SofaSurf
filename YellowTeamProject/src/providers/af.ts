@@ -21,12 +21,6 @@ export class AF {
     });
   }
 
-  loginWithFacebook() {
-    return this.af.auth.login({
-      provider: AuthProviders.Facebook,
-      method: AuthMethods.Popup,
-    });
-  }
 
   logout() {
     return this.af.auth.logout();
@@ -85,7 +79,7 @@ export class AF {
               this.setOrCreateUser(firebaseData);
             });
           }, error => {
-
+            console.log(error);
           });
         } else {
           console.log("non-cordova platform");
