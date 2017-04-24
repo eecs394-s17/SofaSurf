@@ -38,6 +38,15 @@ export class ListPage {
     });
   }
 
+  hostsByMutual(){
+    debugger;
+    this.hostList = this.afService.af.database.list('users', {
+      query: {
+        orderByChild: 'numMutual'
+      }
+    });
+  }
+
   hostsByCanHost(){
     this.hostList = this.afService.af.database.list('users', {
       query: {
