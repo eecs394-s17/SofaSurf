@@ -55,7 +55,8 @@ export class AF {
           phone: '',
           canHost: '',
           numBeds: '',
-          sofaImages: ['']
+          sofaImages: [''],
+          numMutual: ''
         };
         console.log(newUser);
         this.currentUser.update(newUser);

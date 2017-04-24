@@ -34,8 +34,9 @@ export class EditProfile{
       email: [''],
       phone: [''],
       canHost: [''],
-      numBeds: [''],
-      sofaImages: ['']
+      numBeds: '',
+      sofaImages: [''],
+      numMutual: ''
     });
 
     this.currentProfile = this.afService.currentUser;
@@ -53,7 +54,8 @@ export class EditProfile{
         'phone': snapshot.phone,
         'canHost': snapshot.canHost,
         'numBeds': snapshot.numBeds,
-        'sofaImages': snapshot.sofaImages
+        'sofaImages': snapshot.sofaImages,
+        'numMutual' : snapshot.numMutual
       });
     });
   }
@@ -68,8 +70,9 @@ export class EditProfile{
       email: this.userProfile.value.email,
       phone: this.userProfile.value.phone,
       canHost: this.userProfile.value.canHost,
-      numBeds: this.userProfile.value.numBeds,
-      sofaImages: this.userProfile.value.sofaImages
+      numBeds: Number(this.userProfile.value.numBeds),
+      sofaImages: this.userProfile.value.sofaImages,
+      numMutual: Number(this.userProfile.value.numMutual)
     }).then(
       _ => this.nav.pop()
     );
