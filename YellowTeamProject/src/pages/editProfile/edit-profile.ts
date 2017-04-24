@@ -5,7 +5,8 @@ import { NavController } from 'ionic-angular';
 import { FirebaseObjectObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
 import { AutocompletePage } from '../autocomplete/autocomplete';
-import { CameraPage } from '../camera/camera';
+import { Camera } from 'ionic-native';
+
 @Component({
   selector:'editProfile',
   templateUrl: 'edit-profile.html'
@@ -14,15 +15,14 @@ export class EditProfile{
 
   private userProfile : FormGroup;
   public currentProfile: FirebaseObjectObservable<any>;
-  public base64Image: any;
-
+  public base64Image: string;
+  public photoarray : Array<string>;
   constructor(
     private formBuilder: FormBuilder,
     public nav: NavController,
     public afService: AF,
     public toast: ToastController,
-    public modalCtrl: ModalController,
-    public camera : CameraPage
+    public modalCtrl: ModalController
     ) {
 
     this.userProfile = this.formBuilder.group({
@@ -42,6 +42,7 @@ export class EditProfile{
 
     this.currentProfile.subscribe(snapshot => {
       console.log(snapshot);
+      this.photoarray = snapshot.sofaImages;
       this.userProfile.patchValue({
         'name': snapshot.name,
         'gender': snapshot.gender,
@@ -86,9 +87,35 @@ export class EditProfile{
   }
 
   takePicture(){
-    this.base64Image = this.camera.takePicture();
-    this.userProfile.patchValue({'sofaImages':this.base64Image})
-    console.log(this.base64Image);
-    console.log(this.userProfile);
+    Camera.getPicture({
+        destinationType: Camera.DestinationType.DATA_URL,
+        targetWidth: 500,
+        targetHeight: 500
+    }).then((imageData) => {
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+        if(this.photoarray[0] != '') this.photoarray.push(this.base64Image);
+        else this.photoarray[0] = this.base64Image;
+        console.log(this.base64Image);
+        this.userProfile.patchValue({'sofaImages':this.photoarray});
+    }, (err) => {
+        console.log(err);
+    });
+  }
+
+  getPicture(){
+    Camera.getPicture({
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: Camera.DestinationType.DATA_URL,
+      targetHeight: 500,
+      targetWidth: 500
+    }).then((imageData) => {
+      this.base64Image = "data:image/jpeg;base64," + imageData;
+      if(this.photoarray[0] != '') this.photoarray.push(this.base64Image);
+      else this.photoarray[0] = this.base64Image;
+      console.log(this.base64Image);
+      this.userProfile.patchValue({'sofaImages':this.photoarray});
+    }, (err) => {
+      console.log(err);
+    });
   }
 }

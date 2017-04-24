@@ -67,10 +67,9 @@ export class AF {
           phone: '',
           canHost: '',
           numBeds: '',
-          sofaImages: ''
+          sofaImages: ['']
         };
         console.log(newUser);
-        debugger;
         this.currentUser.update(newUser);
       };
     });
