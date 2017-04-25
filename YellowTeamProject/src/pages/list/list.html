@@ -10,29 +10,30 @@
 
 <ion-content padding>
 
-  <ion-fab top right fab-fixed>
+  <ion-fab top left fab-fixed>
     <button ion-fab mini><ion-icon name="funnel"></ion-icon></button>
     <ion-fab-list>
       <button ion-button round (click)="hostsByNumBeds()"># of beds</button>
+      <button ion-button round (click)="hostsByMutual()"># of mutual</button>
     </ion-fab-list>
   </ion-fab>
 
-  <ion-card>
+  <ion-card class="search italic">
     <ion-card-header>
-    Search results for {{ city }}, {{ country }}.
+    {{ city }}, {{ country }}.
     </ion-card-header>
   </ion-card>
 
   <ng-container *ngFor="let host of hostList | async">
     <ion-card *ngIf="host.city == city" (click)="viewHost(host.$key)">
 
-      <ion-item>
+      <ion-item class="host">
         <ion-avatar item-left>
           <img [src]= "host.photoURL">
         </ion-avatar>
         <h2>{{host.name}}</h2>
-        <p>{{host.city}} • {{host.country}}</p>
-        <p>You share 20 friends-of-friends</p>
+        <!-- <p>{{host.city}} • {{host.country}}</p> -->
+        <p class="italic">You share 20 friends-of-friends</p>
       </ion-item>
 
       <ion-slides pager>
@@ -41,9 +42,9 @@
         </ion-slide>
       </ion-slides>
 
-      <ion-card-content>
+<!--       <ion-card-content>
         <p>{{host.aboutMe}}</p>
-      </ion-card-content>
+      </ion-card-content> -->
 
     </ion-card>
 

@@ -9,11 +9,29 @@
 
 <ion-content padding>
 
-  <ion-fab top right fab-fixed>
-    <button color="secondary" ion-fab mini (click)="updateUser()"><ion-icon name="checkmark"></ion-icon></button>
-  </ion-fab> 
+  <ion-card>
+    <ion-card-content>
+      take camera
+      <button (click)="takePicture()">Take a Picture</button>
 
-	<form [formGroup]="userProfile">
+      Latest Picture:
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      get camera from gallery
+
+      <button (click)="getPicture()">Take a Picture</button>
+
+      Latest Picture:
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
+
+	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
+
       <ion-item>
         <ion-label floating>Name</ion-label>
         <ion-input type="text" formControlName="name"></ion-input>
@@ -64,7 +82,15 @@
       <ion-item>
         <ion-label floating>I can host up to # people at once</ion-label>
         <ion-input type="number" formControlName="numBeds"></ion-input>
-      </ion-item>  
-    </form>	
+
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Input number of your mutual friends</ion-label>
+        <ion-input type="number" formControlName="numMutual"></ion-input>
+
+      </ion-item>
+      <button ion-button type="submit" [disabled]="!userProfile.valid">Save Changes</button>
+    </form>
 
 </ion-content>

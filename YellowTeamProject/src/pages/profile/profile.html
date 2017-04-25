@@ -21,13 +21,13 @@
   </ion-slides>
 
   <ion-list no-lines>
-    <ion-item>
+    <ion-item class="user">
       <ion-thumbnail item-left>
         <img [src]= "(currentProfile | async)?.photoURL">
       </ion-thumbnail>
       <h2>{{(currentProfile | async)?.name}}</h2>
       <p>{{(currentProfile | async)?.city}} • {{(currentProfile | async)?.country}}</p>
-      <p>You share 20 friends-of-friends</p>
+      <p class="italic">You share 20 friends-of-friends</p>
     </ion-item>
     <ion-card-content>
       <p>{{(currentProfile | async)?.aboutMe}}</p>
