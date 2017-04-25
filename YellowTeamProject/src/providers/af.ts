@@ -4,14 +4,17 @@ import { Facebook, Device } from 'ionic-native';
 import { Observable } from 'rxjs/Observable';
 import { Platform } from 'ionic-angular';
 import firebase from 'firebase';
+import { Http, Response, RequestOptions } from '@angular/http';
+
 @Injectable()
+
 export class AF {
   public hostList: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   public userId: string;
   public currentUser: FirebaseObjectObservable<any>;
 
-  constructor(public af: AngularFire, public platform : Platform) {
+  constructor(public af: AngularFire, public platform : Platform, private http: Http) {
     this.hostList = this.af.database.list('users');
     this.af.auth.subscribe((data) => {
       console.log('constructor set or create called');
@@ -85,5 +88,24 @@ export class AF {
             console.info("error", error);
           });
         }
+    }
+
+  getMutualFriends(userId) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let data = {
+      userId1: this.userId,
+      userId2: userId,
+      accessToken: ''
+    };
+
+    return this.http.post('https://us-central1-sofasurf-3848c.cloudfunctions.net/mutualFriends',
+      JSON.stringify(data), 
+      options)
+      .subscribe(res => {
+        console.log(res.json());
+      }, (err) => {
+        console.log(err);
+      });
     }
 }
