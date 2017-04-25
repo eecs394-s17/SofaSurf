@@ -30,7 +30,6 @@ export class ListPage {
   }
 
   hostsByNumBeds(){
-    debugger;
     this.hostList = this.afService.af.database.list('users', {
       query: {
         orderByChild: 'numBeds'
@@ -39,7 +38,6 @@ export class ListPage {
   }
 
   hostsByMutual(){
-    debugger;
     this.hostList = this.afService.af.database.list('users', {
       query: {
         orderByChild: 'numMutual'
