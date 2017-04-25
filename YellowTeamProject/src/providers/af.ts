@@ -71,7 +71,6 @@ export class AF {
           Facebook.login(['public_profile', 'email', 'user_friends']).then(facebookData => {
             let provider = firebase.auth.FacebookAuthProvider.credential(facebookData.authResponse.accessToken);
             firebase.auth().signInWithCredential(provider).then(firebaseData => {
-              this.setOrCreateUser(firebaseData);
             });
           }, error => {
             console.log(error);
@@ -82,7 +81,6 @@ export class AF {
             provider: AuthProviders.Facebook,
             method: AuthMethods.Popup
           }).then((facebookData) => {
-            this.setOrCreateUser(facebookData);
           }).catch((error) => {
             console.info("error", error);
           });
