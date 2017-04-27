@@ -14,6 +14,7 @@ import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { EditProfile } from '../pages/editProfile/edit-profile';
 import { ProfilePage } from '../pages/profile/profile';
 import { AF } from "../providers/af";
+import { HttpModule, JsonpModule } from '@angular/http';
 
 const cloudSettings : CloudSettings = {
   'core': {
@@ -38,7 +39,9 @@ export const firebaseConfig = {
     ListPage,
     AutocompletePage,
     EditProfile,
-    ProfilePage
+    ProfilePage,
+    HttpModule,
+    JsonpModule
   ],
   imports: [
     IonicModule.forRoot(MyApp),
