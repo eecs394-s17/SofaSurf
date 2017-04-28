@@ -8,14 +8,20 @@
 </ion-header>
 
 <ion-content padding>
-<button ion-button icon-only clear (click)="openCameraOpt()"><ion-icon name="camera"></ion-icon></button>
+
+  <ion-fab top right fab-fixed>
+    <button color="secondary" ion-fab mini (click)="updateUser()"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab> 
+
+  <button ion-button icon-only clear (click)="openCameraOpt()"><ion-icon name="camera"></ion-icon></button>
+  
   <ion-card>
     <ion-card-content>
       <img [src]="base64Image" *ngIf="base64Image" />
     </ion-card-content>
   </ion-card>
 
-	<form [formGroup]="userProfile" (ngSubmit)="updateUser()">
+	<form [formGroup]="userProfile">
 
       <ion-item>
         <ion-label floating>Name</ion-label>
@@ -69,7 +75,6 @@
         <ion-input type="number" formControlName="numBeds"></ion-input>
 
       </ion-item>
-      <button ion-button type="submit" [disabled]="!userProfile.valid">Save Changes</button>
     </form>
 
 </ion-content>
