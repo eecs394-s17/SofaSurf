@@ -24,7 +24,7 @@ exports.mutualFriends = functions.https.onRequest((req,res) => {
 
   // if (secureCompare(signature, expectedSignature)) {
 
-    getMutualFriends(req.query.userId1, req.query.userId2, req.query.acessToken, res).then(() => {
+    getMutualFriends(req.body.userId1, req.body.userId2, req.body.acessToken, res).then(() => {
       res.end();
     }).catch(error => {
       console.error(error);
@@ -79,7 +79,7 @@ function getMutualFriends(userId1, userId2, accessToken, res){
 				}
 			}
 
-			res.json(JSON.stringify(mutualFriends));
+			res.json(mutualFriends);
 			return Promise.resolve();
 		});
 }
