@@ -49,7 +49,7 @@ export class AF {
       if (!obj.$exists()) {
         let newUser = {
           name: data.auth.displayName,
-          email: data.auth.email,
+          email: (data.auth.email) ? data.auth.email : "",
           photoURL: data.auth.photoURL,
           gender: '',
           city: '',
@@ -71,10 +71,9 @@ export class AF {
   doFacebookLogin() {
         if (this.platform.is('cordova')) {
           console.log("cordova platform");
-          Facebook.login(['public_profile', 'email', 'user_friends']).then(facebookData => {
+          return Facebook.login(['public_profile', 'email', 'user_friends']).then(facebookData => {
             let provider = firebase.auth.FacebookAuthProvider.credential(facebookData.authResponse.accessToken);
-            firebase.auth().signInWithCredential(provider).then(firebaseData => {
-            });
+            firebase.auth().signInWithCredential(provider);
           }, error => {
             console.log(error);
           });

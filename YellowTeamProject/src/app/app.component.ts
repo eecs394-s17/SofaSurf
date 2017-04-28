@@ -26,6 +26,7 @@ export class MyApp {
     public afService: AF,
   ) {
     this.afService.af.auth.subscribe((auth) => {
+      console.log("auth triggered");
       if (auth == null) {
         this.nav.setRoot(LoginPage);
       } else {
@@ -49,7 +50,7 @@ export class MyApp {
   openMyProfile() {
     this.nav.setRoot(ProfilePage, {userId: this.afService.userId});
   }
- 
+
   logout() {
     this.afService.logout();
   }
