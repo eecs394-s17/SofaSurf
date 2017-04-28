@@ -50,7 +50,7 @@ export class AF {
         let newUser = {
           name: data.auth.displayName,
           email: (data.auth.email) ? data.auth.email : "",
-          photoURL: data.auth.photoURL,
+          photoURL: (data.auth.photoURL) ? data.auth.photoURL : "",
           gender: '',
           city: '',
           country: '',
