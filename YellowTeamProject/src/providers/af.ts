@@ -4,7 +4,7 @@ import { Facebook, Device } from 'ionic-native';
 import { Observable } from 'rxjs/Observable';
 import { Platform } from 'ionic-angular';
 import firebase from 'firebase';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Http, Response, RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 
 @Injectable()
 
@@ -99,13 +99,13 @@ export class AF {
       accessToken: ''
     };
 
-    return this.http.post('https://us-central1-sofasurf-3848c.cloudfunctions.net/mutualFriends',
-      JSON.stringify(data), 
+    return this.http.post('/mutualFriends',
+      JSON.stringify(data),
       options)
-      .subscribe(res => {
-        console.log(res.json());
-      }, (err) => {
-        console.log(err);
+      .toPromise()
+      .then(data=>{
+      	console.log(data.json())
+      	//return Promise.resolve(JSON.parse(data._body))
       });
     }
 }

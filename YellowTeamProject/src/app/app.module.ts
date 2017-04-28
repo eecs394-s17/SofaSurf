@@ -39,9 +39,7 @@ export const firebaseConfig = {
     ListPage,
     AutocompletePage,
     EditProfile,
-    ProfilePage,
-    HttpModule,
-    JsonpModule
+    ProfilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -51,7 +49,9 @@ export const firebaseConfig = {
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup
     }),
-    DatePickerModule
+    DatePickerModule,
+    HttpModule,
+    JsonpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

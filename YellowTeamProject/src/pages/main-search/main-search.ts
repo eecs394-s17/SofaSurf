@@ -45,7 +45,7 @@ export class MainSearchPage {
       toast.present();
     }
   }
-
+  
   showAddressModal () {
     let modal = this.modalCtrl.create(AutocompletePage);
     modal.onDidDismiss(data => {
