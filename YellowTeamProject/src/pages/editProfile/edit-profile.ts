@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController, ModalController } from 'ionic-angular';
-import { NavController } from 'ionic-angular';
+import { NavController, ActionSheetController } from 'ionic-angular';
 import { FirebaseObjectObservable } from 'angularfire2';
 import { AF } from '../../providers/af';
 import { AutocompletePage } from '../autocomplete/autocomplete';
@@ -22,7 +22,8 @@ export class EditProfile{
     public nav: NavController,
     public afService: AF,
     public toast: ToastController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public actionSheetCtrl: ActionSheetController
     ) {
 
     this.userProfile = this.formBuilder.group({
@@ -35,8 +36,7 @@ export class EditProfile{
       phone: [''],
       canHost: [''],
       numBeds: '',
-      sofaImages: [''],
-      numMutual: ''
+      sofaImages: ['']
     });
 
     this.currentProfile = this.afService.currentUser;
@@ -54,8 +54,7 @@ export class EditProfile{
         'phone': snapshot.phone,
         'canHost': snapshot.canHost,
         'numBeds': snapshot.numBeds,
-        'sofaImages': snapshot.sofaImages,
-        'numMutual' : snapshot.numMutual
+        'sofaImages': snapshot.sofaImages
       });
     });
   }
@@ -72,7 +71,6 @@ export class EditProfile{
       canHost: this.userProfile.value.canHost,
       numBeds: Number(this.userProfile.value.numBeds),
       sofaImages: this.userProfile.value.sofaImages,
-      numMutual: Number(this.userProfile.value.numMutual)
     }).then(
       _ => this.nav.pop()
     );
@@ -90,6 +88,7 @@ export class EditProfile{
   }
 
   takePicture(){
+    console.log("takePicture function called");
     Camera.getPicture({
         destinationType: Camera.DestinationType.DATA_URL,
         targetWidth: 500,
@@ -106,6 +105,7 @@ export class EditProfile{
   }
 
   getPicture(){
+    console.log("getPicture function called")
     Camera.getPicture({
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -120,5 +120,31 @@ export class EditProfile{
     }, (err) => {
       console.log(err);
     });
+  }
+
+
+  openCameraOpt() {
+    let actionSheet = this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: 'Take Photo',
+          handler: () => {
+            this.takePicture();
+          }
+        },{
+          text: 'Choose Photo',
+          handler: () => {
+            this.getPicture();
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }
