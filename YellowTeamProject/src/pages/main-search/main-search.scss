@@ -11,3 +11,16 @@ page-main-search {
 		color:$primary_text;
 	}
 }
+
+.datepicker-modal{
+	display: block;
+	.datepicker-calendar {
+		.center {
+			justify-content: space-around;
+		}
+	}
+	.datepicker-modal-buttons {
+		position: initial !important;
+		padding: 5px 5px;
+	}
+}
