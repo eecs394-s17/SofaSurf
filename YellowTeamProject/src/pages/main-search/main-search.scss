@@ -18,8 +18,9 @@ page-main-search {
 .datepicker-modal{
 	display: block;
 	.datepicker-calendar {
-		.center {
+		.center.row.col{
 			justify-content: space-around;
+			font-weight: 700;
 		}
 	}
 	.datepicker-modal-buttons {
