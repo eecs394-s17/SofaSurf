@@ -17,10 +17,17 @@ page-main-search {
 
 .datepicker-modal{
 	display: block;
+	.datepicker-modal-head {
+		display: none;
+	}
+	.datepicker-modal-head-details {
+		display: none;
+	}
 	.datepicker-calendar {
 		.center.row.col{
 			justify-content: space-around;
 			font-weight: 700;
+			line-height: 3.6em;
 		}
 	}
 	.datepicker-modal-buttons {
