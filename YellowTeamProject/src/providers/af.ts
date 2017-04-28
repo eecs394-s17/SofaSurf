@@ -104,8 +104,7 @@ export class AF {
       options)
       .toPromise()
       .then(data=>{
-      	console.log(data.json())
-      	//return Promise.resolve(JSON.parse(data._body))
+       	return Promise.resolve(data.json());
       });
     }
 }
