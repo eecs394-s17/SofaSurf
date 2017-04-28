@@ -14,3 +14,17 @@ page-main-search {
 		color: black;
 	}
 }
+
+.datepicker-modal{
+	display: block;
+	.datepicker-calendar {
+		.center.row.col{
+			justify-content: space-around;
+			font-weight: 700;
+		}
+	}
+	.datepicker-modal-buttons {
+		position: initial !important;
+		padding: 5px 5px;
+	}
+}
