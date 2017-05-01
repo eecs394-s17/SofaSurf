@@ -11,13 +11,13 @@
 
   <ion-fab top right fab-fixed>
     <button color="secondary" ion-fab mini (click)="updateUser()"><ion-icon name="checkmark"></ion-icon></button>
-  </ion-fab> 
+  </ion-fab>
 
   <button ion-button icon-only clear (click)="openCameraOpt()"><ion-icon name="camera"></ion-icon></button>
-  
-  <ion-card>
+
+  <ion-card *ngIf="base64Image">
     <ion-card-content>
-      <img [src]="base64Image" *ngIf="base64Image" />
+      <img [src]="base64Image" />
     </ion-card-content>
   </ion-card>
 
@@ -40,11 +40,11 @@
 
       <ion-item>
         <ion-label floating>City</ion-label>
-        <ion-input (click)="showAddressModal()" formControlName="city" type="text" placeholder="Pick an address"></ion-input>
+        <ion-input (click)="showAddressModal()" formControlName="city" type="text" disabled placeholder="Pick an address"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Country</ion-label>
-        <ion-input (click)="showAddressModal()" formControlName="country" type="text" placeholder="Pick an address"></ion-input>
+        <ion-input (click)="showAddressModal()" formControlName="country" type="text" disabled placeholder="Pick an address"></ion-input>
       </ion-item>
 
       <ion-item>
